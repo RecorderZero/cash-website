@@ -12,7 +12,11 @@ const { mobile } = useDisplay()
 onMounted(() => {
     pageTitle.value = path.value;
 });
-
+const user = {
+        initials: 'Ian',
+        fullName: 'Ian Wang',
+        email: 'ian03121997@gmail.com',
+    };
 const buttons = [
     {
         value: 'index',
@@ -43,6 +47,7 @@ const buttons = [
         to: '/contact',
     },
 ];
+
 </script>
 
 
@@ -56,7 +61,7 @@ const buttons = [
         </v-app-bar-title> -->
         <v-app-bar-nav-icon>
             <button>
-                <img src="../../assets/cash.PNG" width="100%" height="100%">
+                <img src="/src/assets/cash.jpg" width="100%" height="100%">
             </button>
         </v-app-bar-nav-icon>
         <v-app-bar-title v-if="!mobile">
@@ -73,5 +78,35 @@ const buttons = [
         </v-btn-toggle>
 
         <v-spacer></v-spacer>
+        <v-menu min-width="200px" rounded>
+            <template v-slot:activator="{ props }">
+                <v-btn icon v-bind="props">
+                    <v-avatar color="brown" size="large">
+                        <span class="text-h5">{{ user.initials }}</span>
+                    </v-avatar>
+                </v-btn>
+            </template>
+            <v-card>
+                <v-card-text>
+                    <div class="mx-auto text-center">
+                        <v-avatar color="brown">
+                            <span class="text-h5">{{ user.initials }}</span>
+                        </v-avatar>
+                        <h3>{{ user.fullName }}</h3>
+                        <p class="text-caption mt-1">
+                            {{ user.email }}
+                        </p>
+                        <v-divider class="my-3"></v-divider>
+                        <v-btn rounded variant="text">
+                            Edit Account
+                        </v-btn>
+                        <v-divider class="my-3"></v-divider>
+                        <v-btn rounded variant="text">
+                            Disconnect
+                        </v-btn>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-menu>
     </v-app-bar>
 </template>
