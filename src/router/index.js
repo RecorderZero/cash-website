@@ -9,7 +9,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/',
+    path: "/",
+    redirect: "/index",
+  },
+  {
+    path: '/index',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {

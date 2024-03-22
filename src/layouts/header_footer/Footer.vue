@@ -5,7 +5,7 @@ import { reactive } from 'vue';
 const socialMedias = reactive([
     {
         icon: 'mdi-facebook',
-        link: ''
+        link: 'https://www.facebook.com/profile.php?id=100002793181780'
     },
     {
         icon: 'mdi-twitter',
@@ -28,8 +28,8 @@ const socialMedias = reactive([
         <v-row justify="center" no-gutters>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/index">Home</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/resume">Resume</v-btn>
-            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/about">About Me</v-btn>
-            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/contact">Contact Me</v-btn>
+            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/about">About Us</v-btn>
+            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/contact">Contact Us</v-btn>
 
 
             <v-col class="text-center mt-4" cols="12">
@@ -39,7 +39,7 @@ const socialMedias = reactive([
 
 
             <v-col class="text-center mt-4" cols="12">
-                <strong>All contents of this site, unless otherwise noted, are ©2000-{{ new Date().getFullYear() }} Daniel.
+                <strong>All contents of this site, unless otherwise noted, are ©2000-{{ new Date().getFullYear() }} Cash.
                     All Rights Reserved.</strong>
             </v-col>
         </v-row>

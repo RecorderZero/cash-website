@@ -48,11 +48,19 @@ const buttons = [
 
 <template>
     <v-app-bar app :elevation="5">
-        <v-app-bar-nav-icon v-if="!mobile">
+        <!-- <v-app-bar-nav-icon v-if="!mobile">
             <v-icon icon="mdi-human-greeting" color="green-darken-4" />
         </v-app-bar-nav-icon>
         <v-app-bar-title class="text-deep-purple-lighten-2" v-if="!mobile">
             Welcome!
+        </v-app-bar-title> -->
+        <v-app-bar-nav-icon>
+            <button>
+                <img src="../../assets/cash.PNG" width="100%" height="100%">
+            </button>
+        </v-app-bar-nav-icon>
+        <v-app-bar-title v-if="!mobile">
+            開巨技術顧問股份有限公司
         </v-app-bar-title>
         <v-spacer v-if="mobile"></v-spacer>
 
