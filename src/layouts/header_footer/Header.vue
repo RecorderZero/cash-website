@@ -12,36 +12,50 @@ const { mobile } = useDisplay()
 onMounted(() => {
     pageTitle.value = path.value;
 });
-const user = {
-        initials: 'Ian',
-        fullName: 'Ian Wang',
-        email: 'ian03121997@gmail.com',
-    };
+// const user = {
+//         initials: 'Ian',
+//         fullName: 'Ian Wang',
+//         email: 'ian03121997@gmail.com',
+//     };
 const buttons = [
     {
         value: 'index',
-        text: 'Home',
+        text: '首頁',
         icon: 'mdi-home',
         textClass: 'text-green',
         to: '/index',
     },
     {
-        value: 'resume',
-        text: 'Resume',
-        icon: 'mdi-file-account',
+        value: 'news',
+        text: '最新消息',
+        icon: 'mdi-newspaper-variant',
         textClass: 'text-brown-darken-1',
-        to: '/resume',
+        to: '/news',
+    },
+    {
+        value: 'project',
+        text: '工程實績',
+        icon: 'mdi-hammer',
+        textClass: 'text-red',
+        to: '/project',
+    },
+    {
+        value: 'service',
+        text: '服務項目',
+        icon: 'mdi-cog',
+        textClass: 'text-grey',
+        to: '/service',
     },
     {
         value: 'about',
-        text: 'About Me',
+        text: '關於我們',
         icon: 'mdi-information',
         textClass: 'text-blue',
         to: '/about',
     },
     {
         value: 'contact',
-        text: 'Contact Me',
+        text: '聯絡我們',
         icon: 'mdi-phone-incoming',
         textClass: 'text-yellow-darken-4',
         to: '/contact',
@@ -52,7 +66,7 @@ const buttons = [
 
 
 <template>
-    <v-app-bar app :elevation="5">
+    <v-app-bar app :elevation="5" >
         <!-- <v-app-bar-nav-icon v-if="!mobile">
             <v-icon icon="mdi-human-greeting" color="green-darken-4" />
         </v-app-bar-nav-icon>
@@ -60,25 +74,38 @@ const buttons = [
             Welcome!
         </v-app-bar-title> -->
         <v-app-bar-nav-icon>
-            <button>
-                <img src="/src/assets/cash.jpg" width="100%" height="100%">
-            </button>
+            <img src="/src/assets/cash.jpg" width="100%" height="100%">
         </v-app-bar-nav-icon>
-        <v-app-bar-title v-if="!mobile">
-            開巨技術顧問股份有限公司
+        <v-app-bar-title>
+            開巨技術顧問有限公司
         </v-app-bar-title>
-        <v-spacer v-if="mobile"></v-spacer>
 
-        <v-btn-toggle v-model="pageTitle">
+        <!-- 電腦導航欄 -->
+        <v-spacer v-if="mobile"></v-spacer>
+        <v-btn-toggle v-model="pageTitle" v-if="!mobile">
             <v-btn v-for="button in buttons" :key="button.value" rounded="xl" size="large" :class="button.textClass"
                 :value="button.value" :to="button.to">
                 <v-icon :icon="button.icon" />
-                <span v-if="!mobile">{{ button.text }}</span>
+                <span>{{ button.text }}</span>
             </v-btn>
         </v-btn-toggle>
 
-        <v-spacer></v-spacer>
-        <v-menu min-width="200px" rounded>
+        <!-- 手機導航欄 -->
+        <v-spacer v-if="!mobile"></v-spacer>
+        <v-menu open-on-hover open-delay="100" close-delay="100" v-if="mobile">
+            <template v-slot:activator="{ props }">
+                <v-btn v-bind="props" class="text-black" icon="mdi-view-list">
+                </v-btn>
+            </template>
+
+            <v-list>
+                <v-list-item v-for="button in buttons" :key="button.value" :class="button.textClass" :value="button.value"  :prepend-icon="button.icon" :to="button.to">
+                    <v-list-item-title>{{ button.text }}</v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
+        <!-- 頭像 -->
+        <!-- <v-menu min-width="200px" rounded>
             <template v-slot:activator="{ props }">
                 <v-btn icon v-bind="props">
                     <v-avatar color="brown" size="large">
@@ -107,6 +134,6 @@ const buttons = [
                     </div>
                 </v-card-text>
             </v-card>
-        </v-menu>
+        </v-menu> -->
     </v-app-bar>
 </template>
