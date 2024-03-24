@@ -9,7 +9,7 @@
       <v-container>
           <h2>最新消息</h2>
           <v-row>
-              <v-col v-for="(info, index) in information" :key="index" cols="12" md="4">
+              <v-col v-for="(info, index) in information" :key="index" cols="12" sm="12" md="4">
                   <v-card link :href="info.to">
                       <v-img cover :src="info.imageUrl" height="200"></v-img>
                       <v-card-title>{{ info.name }}</v-card-title>
@@ -17,6 +17,13 @@
                   </v-card>
               </v-col>
           </v-row>
+          <v-row>
+            <v-col align="center">
+          <v-btn to="/news">
+            更多消息
+          </v-btn>
+          </v-col>
+        </v-row>
       </v-container>
   </v-main>
 </template>
