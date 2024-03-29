@@ -96,6 +96,41 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/login',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Login',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "login" */ '@/pages/login.vue'),
+      },
+    ],
+  },
+  {
+    path: '/forgotPassword',
+    // component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    // children: [
+    //   {
+    //     path: '',
+         name: 'ForgotPassword',
+        component: () => import(/* webpackChunkName: "forgotPassword" */ '@/pages/forgotPassword.vue'),
+    //   },
+    // ],
+  },
+  // {
+  //   path: '/otp',
+  //   name: 'OTP',
+  //   component: () => import(/* webpackChunkName: "otp" */ '@/pages/otp.vue'),
+  // },
+  // {
+  //   path: '/resetPassword',
+  //   name: 'ResetPassword',
+  //   component: () => import(/* webpackChunkName: "resetPassword" */ '@/pages/resetPassword.vue'),
+  // },
 ]
 
 const router = createRouter({

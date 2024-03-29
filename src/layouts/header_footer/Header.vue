@@ -104,6 +104,24 @@ const buttons = [
                 </v-list-item>
             </v-list>
         </v-menu>
+        <v-menu min-width="200px" rounded>
+            <template v-slot:activator="{ props }">
+            <v-btn icon v-bind="props">
+                <v-avatar color="brown" size="large">
+                <v-icon>mdi-login</v-icon>
+                </v-avatar>
+            </v-btn>
+            </template>
+            <v-card>
+            <v-card-text>
+                <div class="mx-auto text-center">
+                <v-btn rounded variant="text" to="/login">
+                    Login
+                </v-btn>
+                </div>
+            </v-card-text>
+            </v-card>
+        </v-menu>
         <!-- 頭像 -->
         <!-- <v-menu min-width="200px" rounded>
             <template v-slot:activator="{ props }">
