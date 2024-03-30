@@ -97,6 +97,34 @@ const routes = [
     ],
   },
   {
+    path: '/register',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Register',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "register" */ '@/pages/register.vue'),
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Dashboard',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "dashboard" */ '@/pages/dashboard.vue'),
+      },
+    ],
+  },
+  {
     path: '/login',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
@@ -112,25 +140,19 @@ const routes = [
   },
   {
     path: '/forgotPassword',
-    // component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
-    // children: [
-    //   {
-    //     path: '',
-         name: 'ForgotPassword',
-        component: () => import(/* webpackChunkName: "forgotPassword" */ '@/pages/forgotPassword.vue'),
-    //   },
-    // ],
+    name: 'ForgotPassword',
+    component: () => import(/* webpackChunkName: "forgotPassword" */ '@/pages/forgotPassword.vue'),
   },
-  // {
-  //   path: '/otp',
-  //   name: 'OTP',
-  //   component: () => import(/* webpackChunkName: "otp" */ '@/pages/otp.vue'),
-  // },
-  // {
-  //   path: '/resetPassword',
-  //   name: 'ResetPassword',
-  //   component: () => import(/* webpackChunkName: "resetPassword" */ '@/pages/resetPassword.vue'),
-  // },
+  {
+    path: '/otp',
+    name: 'OTP',
+    component: () => import(/* webpackChunkName: "otp" */ '@/pages/otp.vue'),
+  },
+  {
+    path: '/resetPassword',
+    name: 'ResetPassword',
+    component: () => import(/* webpackChunkName: "resetPassword" */ '@/pages/resetPassword.vue'),
+  },
 ]
 
 const router = createRouter({

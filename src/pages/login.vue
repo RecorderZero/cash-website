@@ -28,15 +28,18 @@
             </v-card-text>
         </v-card>
 
-        <v-btn block class="mb-8" color="blue" size="large" variant="tonal">
+        <v-btn block class="mb-8" color="blue" size="large" variant="tonal" to="/dashboard">
             登入
         </v-btn>
 
-        <v-card-text class="text-center">
-            <a class="text-blue text-decoration-none" href="#" rel="noopener noreferrer" target="_blank">
-                註冊 <v-icon icon="mdi-chevron-right"></v-icon>
+        <v-btn block class="mb-8" color="blue" size="large" variant="tonal" to="/register">
+            註冊帳號
+        </v-btn>
+        <!-- <v-card-text class="text-center">
+            <a class="text-blue text-decoration-none" @click.prevent="register" rel="noopener noreferrer" target="_blank">
+                註冊帳號 <v-icon icon="mdi-chevron-right"></v-icon>
             </a>
-        </v-card-text>
+        </v-card-text> -->
     </v-card>
   </div>
 </template>
@@ -50,7 +53,10 @@ export default {
   methods: {
       forgotPasswordPage() {
           router.push({ name: 'ForgotPassword' })
-      }
-  }
-}
+      },
+      register() {
+        router.push({ name: 'Register' })
+      },
+  },
+};
 </script>

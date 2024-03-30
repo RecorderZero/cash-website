@@ -104,23 +104,31 @@ const buttons = [
                 </v-list-item>
             </v-list>
         </v-menu>
-        <v-menu min-width="200px" rounded>
+        <v-menu min-width="200px" rounded open-on-hover>
             <template v-slot:activator="{ props }">
-            <v-btn icon v-bind="props">
-                <v-avatar color="brown" size="large">
-                <v-icon>mdi-login</v-icon>
-                </v-avatar>
+            <v-btn v-bind="props"  icon="mdi-login">
             </v-btn>
             </template>
-            <v-card>
+            <v-list>
+                <v-list-item to="/login">
+                    <v-list-item-title>登入後臺</v-list-item-title>
+                </v-list-item>
+                <v-list-item to="/register">
+                    <v-list-item-title>註冊帳號</v-list-item-title>
+                </v-list-item>
+            </v-list>
+            <!-- <v-card>
             <v-card-text>
                 <div class="mx-auto text-center">
                 <v-btn rounded variant="text" to="/login">
                     Login
                 </v-btn>
+                <v-btn rounded variant="text" to="/register">
+                    Register
+                </v-btn>
                 </div>
             </v-card-text>
-            </v-card>
+            </v-card> -->
         </v-menu>
         <!-- 頭像 -->
         <!-- <v-menu min-width="200px" rounded>

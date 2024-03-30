@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-container class="fill-height bg-deep-purple pa-12" fluid>
-    <v-card class="ma-auto px-6 py-8 w-100" max-width="512">
+  <v-container class="fill-height pa-12" fluid>
+    <v-card class="ma-auto px-6 py-8 w-100" max-width="512" elevation="8">
       <v-form v-model="form" @submit.prevent="onSubmit">
         <v-text-field v-model="email" :readonly="loading" :rules="required" class="mb-2" clearable
           label="Email"></v-text-field>
