@@ -5,7 +5,7 @@
  */
 
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
   {
@@ -112,7 +112,7 @@ const routes = [
   },
   {
     path: '/dashboard',
-    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    component: () => import('@/layouts/sandwich/BackstageLayout.vue'),
     children: [
       {
         path: '',
@@ -156,7 +156,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 })
 

@@ -5,7 +5,6 @@
       <v-form v-model="form" @submit.prevent="onSubmit">
         <v-text-field type="password" v-model="password" :readonly="loading" :rules="passwordRules" class="mb-2"
             clearable label="New Password" placeholder="Enter your password"></v-text-field>
-
         <v-text-field type="password" v-model="confirmPassword" :readonly="loading" :rules="confirmPasswordRules"
             clearable label="Confirm Password" placeholder="Confirm password"></v-text-field>
 
@@ -42,11 +41,12 @@ export default {
       }, 2000)
 
       await new Promise(resolve => setTimeout(resolve, 3000))
+      //應該要改api修改密碼
       router.push({ name: 'Dashboard', params: { username: this.username, password: this.password } })
     },
-    required(v) {
-      return !!v || 'Field is required'
-    },
+    // required(v) {
+    //   return !!v || 'Field is required'
+    // },
   },
 
   computed: {
