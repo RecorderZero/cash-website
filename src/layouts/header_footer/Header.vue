@@ -23,42 +23,36 @@ const buttons = [
         text: '首頁',
         icon: 'mdi-home',
         textClass: 'text-green',
-        to: '/index',
     },
     {
         value: 'news',
         text: '最新消息',
         icon: 'mdi-newspaper-variant',
         textClass: 'text-brown-darken-1',
-        to: '/news',
     },
     {
-        value: 'project',
+        value: 'projects',
         text: '工程實績',
         icon: 'mdi-hammer',
         textClass: 'text-red',
-        to: '/project',
     },
     {
         value: 'service',
         text: '服務項目',
         icon: 'mdi-cog',
         textClass: 'text-grey',
-        to: '/service',
     },
     {
         value: 'about',
         text: '關於我們',
         icon: 'mdi-information',
         textClass: 'text-blue',
-        to: '/about',
     },
     {
         value: 'contact',
         text: '聯絡我們',
         icon: 'mdi-phone-incoming',
         textClass: 'text-yellow-darken-4',
-        to: '/contact',
     },
 ];
 
@@ -83,8 +77,8 @@ const buttons = [
         <!-- 電腦導航欄 -->
         <v-spacer v-if="mobile"></v-spacer>
         <v-btn-toggle v-model="pageTitle" v-if="!mobile">
-            <v-btn v-for="button in buttons" :key="button.value" rounded="xl" size="large" :class="button.textClass"
-                :value="button.value" :to="button.to">
+            <v-btn v-for="(button, index) in buttons" :key="index" rounded="xl" size="large" :class="button.textClass"
+                :value="button.value" :to=" '/' + button.value">
                 <v-icon :icon="button.icon" />
                 <span>{{ button.text }}</span>
             </v-btn>
@@ -99,7 +93,7 @@ const buttons = [
             </template>
 
             <v-list>
-                <v-list-item v-for="button in buttons" :key="button.value" :class="button.textClass" :value="button.value"  :prepend-icon="button.icon" :to="button.to">
+                <v-list-item v-for="(button, index) in buttons" :key="index" :class="button.textClass" :value="button.value"  :prepend-icon="button.icon" :to="'/' + button.value">
                     <v-list-item-title>{{ button.text }}</v-list-item-title>
                 </v-list-item>
             </v-list>
