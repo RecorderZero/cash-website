@@ -1,13 +1,32 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <cardDisplay :categories="categories" :displayItems="news" :hrefprefix="hrefprefix"/>
+  <v-main>
+    <!-- button filter -->
+    <v-container>
+      <v-btn-toggle v-model="filter" mandatory="force" variant="outlined">
+        <v-btn v-for="category in categories" :key="category.value" :text="category.text" :value="category.value"></v-btn>
+      </v-btn-toggle>
+    </v-container>
+    <!-- 顯示 -->
+    <v-container>
+      <v-row>
+        <v-col v-for="info in displayedNews" :key="info.id" cols="12" sm="6" md="4">
+          <v-card link :href="'news' + info.id">
+            <v-img cover :src="info.imageUrl" height="200"></v-img>
+            <v-card-title>{{ info.title }}</v-card-title>
+            <v-card-text> {{ info.content }}</v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-pagination v-model="page" :length="Math.ceil(totalNews / perPage)"></v-pagination>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
 export default {
-    data() {
+  data() {
     return {
-        hrefprefix: 'news',
       categories: [
         {
           text: "全部",
@@ -26,6 +45,9 @@ export default {
           value: "completed",
         },
       ],
+      filter: null,
+      page: 1,
+      perPage: 5,
       news: [
         {
           "id": 1,
@@ -99,6 +121,22 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    totalNews() {
+      return this.searching.length;
+    },
+    displayedNews() {
+      const start = (this.page - 1) * this.perPage;
+      const end = start + this.perPage;
+      return this.searching.slice(start, end);
+    },
+    searching() {
+      if (this.filter == "all") return this.news;
+      return this.news.filter(info => {
+        return info.class == this.filter;
+      })
+    },
   },
 }
 </script>
