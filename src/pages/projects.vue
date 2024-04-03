@@ -18,6 +18,17 @@
       <br><br>
       <v-row>
       <p>{{ searching[0].content }}</p>
+      <v-divider class="border-opacity-50"></v-divider>
+    </v-row>
+    <br><br>
+    <v-row>
+        <v-icon icon="mdi-account"></v-icon><p>{{ '參與成員：' + searching[0].member }}</p>
+    </v-row>
+    <v-row>
+        <v-icon icon="mdi-map-marker"></v-icon><p>{{ '地點：' + searching[0].location }}</p>
+    </v-row>
+    <v-row>
+        <v-icon icon="mdi-calendar-check"></v-icon><p>{{ '執行期間：' + searching[0].date }}</p>
     </v-row>
     <br><br>
     <v-row>
@@ -39,76 +50,106 @@ export default {
     data() {
         return {
             news: [
-                {
+            {
                 "id": 1,
-                "title": "2024金質獎",
+                "date": "2023/1/1-2024/1/1",
+                "title": "頭前溪",
                 "content": "團隊獲得金質獎",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "honor",
-                },
-                {
+                "class": "water",
+            },
+            {
                 "id": 2,
-                "title": "2024尾牙",
+                "date": "2023/1/1-2024/1/1",
+                "title": "信義路",
                 "content": "尾牙大獎一台汽車",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "activity",
-                },
-                {
+                "class": "road",
+            },
+            {
                 "id": 3,
+                "date": "2023/1/1-2024/1/1",
                 "title": "河濱公園竣工",
                 "content": "河濱公園很漂亮",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "completed",
-                },
-                {
+                "class": "view",
+            },
+            {
                 "id": 4,
-                "title": "杜拜遊",
+                "date": "2023/1/1-2024/1/1",
+                "title": "國家墓園",
                 "content": "杜拜好熱",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "activity",
-                },
-                {
+                "class": "land",
+            },
+            {
                 "id": 5,
-                "title": "榮升董事長",
+                "date": "2023/1/1-2024/1/1",
+                "title": "忠孝東路",
                 "content": "董事長好多會議要開",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "honor",
-                },
-                {
+                "class": "road",
+            },
+            {
                 "id": 6,
+                "date": "2023/1/1-2024/1/1",
                 "title": "水壩竣工",
                 "content": "從此台北不缺水",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "completed",
-                },
-                {
+                "class": "water",
+            },
+            {
                 "id": 7,
+                "date": "2023/1/1-2024/1/1",
                 "title": "花園竣工",
                 "content": "民眾有個遊憩好地方",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "completed",
-                },
-                {
+                "class": "view",
+            },
+            {
                 "id": 8,
-                "title": "2023金質獎",
+                "date": "2023/1/1-2024/1/1",
+                "title": "航空城",
                 "content": "第二次獲得金質獎",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "honor",
-                },
-                {
+                "class": "land",
+            },
+            {
                 "id": 9,
-                "title": "日本櫻花行",
+                "date": "2023/1/1-2024/1/1",
+                "title": "淡水河",
                 "content": "今年櫻花特別多",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "activity",
-                },
-                {
+                "class": "water",
+            },
+            {
                 "id": 10,
-                "title": "歐洲建築參訪",
+                "date": "2023/1/1-2024/1/1",
+                "title": "景美公園",
                 "content": "大理石的建築相當宏偉",
+                "member": "員工1,員工2",
+                "location": "新北市",
                 "imageUrl": ["/src/assets/carousel1.jpg", "/src/assets/carousel2.jpg", "/src/assets/carousel3.jpg"],
-                "class": "activity",
-                },
+                "class": "view",
+            },
             ],
         };
     },

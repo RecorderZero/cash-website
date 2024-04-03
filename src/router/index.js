@@ -32,11 +32,11 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'NewsAll',
+        name: 'NewsOverview',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "newsAll" */ '@/pages/newsOverview.vue'),
+        component: () => import(/* webpackChunkName: "newsOverview" */ '@/pages/newsOverview.vue'),
       },
     ],
   },
@@ -60,11 +60,25 @@ const routes = [
     children: [
       {
         path: '',
+        name: 'ProjectsOverview',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "projectsOverview" */ '@/pages/projectsOverview.vue'),
+      },
+    ],
+  },
+  {
+    path: '/projects/:id',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
         name: 'Projects',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "projects" */ '@/pages/projectsOverview.vue'),
+        component: () => import(/* webpackChunkName: "projects" */ '@/pages/projects.vue'),
       },
     ],
   },
