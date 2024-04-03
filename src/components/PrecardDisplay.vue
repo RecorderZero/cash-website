@@ -2,7 +2,9 @@
     <v-main>
       <!-- button filter -->
       <v-container>
-          <v-btn v-for="category in categories" :key="category.value" :text="category.text" :to="hrefprefix + '?class=' + category.value"></v-btn>
+        <v-btn-toggle v-model="filter" mandatory="force" variant="outlined">
+          <v-btn v-for="category in categories" :key="category.value" :text="category.text" :value="category.value"></v-btn>
+        </v-btn-toggle>
       </v-container>
       <!-- 顯示 -->
       <v-container>
@@ -34,14 +36,15 @@ export default {
       return this.searching.slice(start, end);
     },
     searching() {
-      if (this.$route.query.class == "all") return this.displayItems;
+      if (this.filter == "all") return this.displayItems;
       return this.displayItems.filter(item => {
-        return item.class == this.$route.query.class;
+        return item.class == this.filter;
       })
     },
   },
   data() {
     return {
+      filter: null,
       page: 1,
       perPage: 5,
     };
