@@ -78,7 +78,7 @@ const buttons = [
         <v-spacer v-if="mobile"></v-spacer>
         <v-btn-toggle v-model="pageTitle" v-if="!mobile">
             <v-btn v-for="(button, index) in buttons" :key="index" rounded="xl" size="large" :class="button.textClass"
-                :to="button.value">
+                :to="'/' + button.value">
                 <v-icon :icon="button.icon" />
                 <span>{{ button.text }}</span>
             </v-btn>
@@ -93,7 +93,7 @@ const buttons = [
             </template>
 
             <v-list>
-                <v-list-item v-for="(button, index) in buttons" :key="index" :class="button.textClass" :prepend-icon="button.icon" :to="button.value">
+                <v-list-item v-for="(button, index) in buttons" :key="index" :class="button.textClass" :prepend-icon="button.icon" :to="'/' + button.value">
                     <v-list-item-title>{{ button.text }}</v-list-item-title>
                 </v-list-item>
             </v-list>

@@ -1,22 +1,26 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div>
-        <slot name="header">子組件頭部</slot>
-        
-        <slot name="footer">子組件底部</slot>
-
-        <!-- <slot  name="content">{{ item }}</slot> -->
-        <slot :item="item"></slot>
-    </div>
-
+  <body>
+    {{ info }}
+  </body>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default{
     data() {
         return {
-            item: ['tt','aa','cc'],
-        };
+            info: null,
+        }
+    },
+    mounted () {
+        // const username = 'ian';
+        // const password = 'az135790';
+        // const encoded = Buffer.from(username + ':' + password).toString('base64');
+        axios
+            .get('http://127.0.0.1:8000/new/')
+            .then(response => (this.info = response))
     },
 };
 

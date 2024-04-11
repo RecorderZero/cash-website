@@ -2,9 +2,11 @@
     <v-main>
       <!-- button filter -->
       <v-container>
-          <v-btn v-for="category in categories" :key="category.value" :text="category.text" :to="hrefprefix + '?class=' + category.value"></v-btn>
+          <v-btn text="全部" :to="hrefprefix + '?class=all'" @click="pageReset"></v-btn>
+          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.english_text" @click="pageReset"></v-btn>
       </v-container>
       <!-- 顯示 -->
+      <!-- 未來page應改成query的方法，以便返回時能到原頁面 -->
       <v-container>
         <v-row>
           <v-col v-for="item in displayed" :key="item.id" cols="12" sm="6" md="4">
@@ -33,11 +35,17 @@ export default {
       const end = start + this.perPage;
       return this.searching.slice(start, end);
     },
+    // 是否須將此邏輯丟給後台執行，前台執行太慢
     searching() {
       if (this.$route.query.class == "all") return this.displayItems;
       return this.displayItems.filter(item => {
-        return item.class == this.$route.query.class;
+        return item.classification == this.$route.query.class;
       })
+    },
+  },
+  methods: {
+    pageReset() {
+      return this.page = 1
     },
   },
   data() {
