@@ -18,10 +18,10 @@ export default {
     created () {
         axios
             .get('http://127.0.0.1:8000/project/')
-            .then(response => (this.projects = response.data.results))
+            .then(response => (this.projects = response.data))
         axios
             .get('http://127.0.0.1:8000/projectclassification/')
-            .then(response => (this.categories = response.data.results))
+            .then(response => (this.categories = response.data))
     },
 //   data() {
 //   return {

@@ -2,43 +2,63 @@
 <template>
     <v-main>
     <!-- use $route.params.id to get data from api -->
-    <v-container>
-        <v-carousel cycle=true interval="2000">
+    <!-- <v-container>
+        <v-carousel cycle=true interval="2000"> -->
           <!-- 輪播內容 -->
-          <v-carousel-item cover v-for="(img, index) in searching[0].imageUrl" :src="img" :key="index">
+          <!-- <v-carousel-item cover v-for="(img, index) in item.imageUrl" :src="img" :key="index">
           </v-carousel-item>
         </v-carousel>
-    </v-container>
+    </v-container> -->
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
-      <v-container>
-      <v-row>
-      <h1>{{ searching[0].title }}</h1>
-      </v-row>
-      <br><br>
-      <v-row>
-      <p>{{ searching[0].content }}</p>
-      <v-divider class="border-opacity-50"></v-divider>
-    </v-row>
-    <br><br>
-    <v-row>
-        <v-icon icon="mdi-account"></v-icon><p>{{ '參與成員：' + searching[0].member }}</p>
-    </v-row>
-    <v-row>
-        <v-icon icon="mdi-map-marker"></v-icon><p>{{ '地點：' + searching[0].location }}</p>
-    </v-row>
-    <v-row>
-        <v-icon icon="mdi-calendar-check"></v-icon><p>{{ '執行期間：' + searching[0].date }}</p>
-    </v-row>
-    <br><br>
-    <v-row>
-    <v-btn @click="$router.go(-1)">回到上一頁</v-btn>
-</v-row>
-</v-container>
+      <v-container v-if="item">
+        <v-row>
+        <h1>{{ item.title }}</h1>
+        </v-row>
+        <br><br>
+        <v-row>
+        <p>{{ item.content }}</p>
+        <v-divider class="border-opacity-50"></v-divider>
+        </v-row>
+        <br><br>
+        <v-row>
+            <v-icon icon="mdi-account"></v-icon><p>{{ '參與成員：' + item.member }}</p>
+        </v-row>
+        <v-row>
+            <v-icon icon="mdi-map-marker"></v-icon><p>{{ '地點：' + item.location }}</p>
+        </v-row>
+        <v-row>
+            <v-icon icon="mdi-calendar-check"></v-icon><p>{{ '執行期間：' + item.date }}</p>
+        </v-row>
+        <br><br>
+        <v-row>
+        <v-btn @click="$router.go(-1)">回到上一頁</v-btn>
+        </v-row>
+    </v-container>
+    <v-container v-else>
+        <p>Loading</p>
+    </v-container>
 </v-main>
   </template>
 
 <script>
+import axios from 'axios'
+export default {
+    
+    created() {
+        axios
+            .get('http://127.0.0.1:8000/project/' + this.$route.params.id + '/')
+            .then(response => (this.item = response.data))
+    },
+    data() {
+        return {
+            item: null,
+        }
+    },
+}
+</script>
+
+<!-- <script>
 export default {
     computed: {
         searching() {
@@ -154,4 +174,4 @@ export default {
         };
     },
 }
-</script>
+</script> -->

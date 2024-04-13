@@ -19,10 +19,12 @@ export default {
     created () {
         axios
             .get('http://127.0.0.1:8000/classification/')
-            .then(response => (this.categories = response.data.results))
+            .then(response => {this.categories = response.data})
+            .catch(error => {console.log(error.response)})
         axios
             .get('http://127.0.0.1:8000/new/')
-            .then(response => (this.news = response.data.results))
+            .then(response => {this.news = response.data})
+            .catch(error => {console.log(error.response)})
     },
 }
 </script>

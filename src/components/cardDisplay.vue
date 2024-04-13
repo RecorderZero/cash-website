@@ -2,11 +2,13 @@
     <v-main>
       <!-- button filter -->
       <v-container>
-          <v-btn text="全部" :to="hrefprefix + '?class=all'" @click="pageReset"></v-btn>
-          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.english_text" @click="pageReset"></v-btn>
+          <v-btn text="全部" :to="hrefprefix + '?class=all'" @click="handleClick('all')" :class="{ 'highlight': selectedCategory === 'all'}"></v-btn>
+          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.english_text" @click="handleClick(category.english_text)" :class="{ 'highlight': selectedCategory === category.english_text}"></v-btn>
       </v-container>
+      <!-- {{ displayItems }} -->
       <!-- 顯示 -->
       <!-- 未來page應改成query的方法，以便返回時能到原頁面 -->
+      <!-- 抓資料應改成在後台query而非全部抓到前台 -->
       <v-container>
         <v-row>
           <v-col v-for="item in displayed" :key="item.id" cols="12" sm="6" md="4">
@@ -20,6 +22,7 @@
         </v-row>
         <v-pagination v-model="page" :length="Math.ceil(totalItems / perPage)"></v-pagination>
       </v-container>
+      <!-- {{ searching }} -->
     </v-main>
   </template>
 
@@ -37,6 +40,7 @@ export default {
     },
     // 是否須將此邏輯丟給後台執行，前台執行太慢
     searching() {
+      if (!this.displayItems) return [];
       if (this.$route.query.class == "all") return this.displayItems;
       return this.displayItems.filter(item => {
         return item.classification == this.$route.query.class;
@@ -44,15 +48,29 @@ export default {
     },
   },
   methods: {
+    handleClick(classification) {
+      this.pageReset();
+      this.changeStyle(classification);
+    },
     pageReset() {
       return this.page = 1
     },
+    changeStyle(classification) {
+      this.selectedCategory = classification
+    }
   },
   data() {
     return {
       page: 1,
       perPage: 5,
+      selectedCategory: 'all',
     };
   },
 }
 </script>
+
+<style>
+.highlight {
+  background-color: white;
+}
+</style>

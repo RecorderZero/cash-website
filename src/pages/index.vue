@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-main class="pt-0">
-      <v-carousel cycle=true interval="2000">
+      <v-carousel :cycle="true" interval="2000">
           <!-- 輪播內容 -->
           <v-carousel-item cover v-for="(item, index) in carouselItems" :src="item.imageUrl" :key="index">
           </v-carousel-item>
@@ -19,7 +19,7 @@
           </v-row>
           <v-row>
             <v-col align="center">
-          <v-btn to="/news">
+          <v-btn to="/news?class=all">
             更多消息
           </v-btn>
           </v-col>
@@ -33,7 +33,7 @@
                     <v-card 
                       :elevation="isHovering ? 12 : 2"
                       v-bind="props">
-                      <v-img :src="project.imageUrl" cover @click="navigator()"></v-img>
+                      <v-img :src="project.imageUrl" cover @click="navigator(project.class)"></v-img>
                     </v-card>
                   </v-hover>
                   <!-- <v-row><v-img :src="project.imageUrl" @click="navigator('test')"></v-img></v-row> -->
@@ -107,8 +107,8 @@ export default {
       };
   },
   methods: {
-    navigator() {
-      router.push({ name: 'ProjectsOverview' })
+    navigator(classification) {
+      router.push({ name: 'ProjectsOverview' , query: {class: classification}})
     },
   },
 };

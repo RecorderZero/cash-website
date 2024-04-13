@@ -11,7 +11,7 @@ const routes = [
   {
     path: "/test",
     name: "Test",
-    component: () => import('@/pages/test.vue')
+    component: () => import('@/components/pagination.vue')
   },
   {
     path: "/",
