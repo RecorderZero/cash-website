@@ -22,7 +22,7 @@
         </v-row>
         <br><br>
         <v-row>
-            <v-icon icon="mdi-account"></v-icon><p>{{ '參與成員：' + item.member }}</p>
+            <v-icon icon="mdi-account"></v-icon><p>{{ '參與成員：' + employees }}</p>
         </v-row>
         <v-row>
             <v-icon icon="mdi-map-marker"></v-icon><p>{{ '地點：' + item.location }}</p>
@@ -48,10 +48,24 @@ export default {
     created() {
         axios
             .get('http://127.0.0.1:8000/project/' + this.$route.params.id + '/')
-            .then(response => (this.item = response.data))
+            .then(response => {
+                this.item = response.data;
+                // 獲取員工
+                return Promise.all(this.item.member.map(memberId => {
+                    return axios.get('http://127.0.0.1:8000/member/'+memberId+'/');
+                }));
+            })
+            .then(employeeResopnses => {
+                // 處理員工響應
+                this.employees = employeeResopnses.map(response => response.data.name);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     },
     data() {
         return {
+            employees: null,
             item: null,
         }
     },
