@@ -158,6 +158,20 @@ const routes = [
     ],
   },
   {
+    path: '/upload',
+    component: () => import('@/layouts/sandwich/BackstageLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Upload',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "upload" */ '@/pages/upload.vue'),
+      },
+    ],
+  },
+  {
     path: '/login',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [

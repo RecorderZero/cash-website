@@ -22,10 +22,7 @@
                 <!-- <v-checkbox v-model="terms" color="secondary" label="I agree to site terms and conditions"></v-checkbox> -->
             </v-container>
 
-            <v-divider></v-divider>
-
             <v-card-actions>
-                <v-spacer></v-spacer>
 
                 <v-btn block class="bg-success" :disabled="!form" to="/dashboard">
                     完成註冊
@@ -47,7 +44,7 @@ export default {
         email: null,
         password: null,
         confirmPassword: null,
-        terms: false,
+        // terms: false,
     }),
     computed: {
         passwordRules() {
