@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-main class="pt-0">
-      <v-carousel :cycle="true" interval="2000">
+      <v-carousel :cycle="true" interval="3000">
           <!-- 輪播內容 -->
           <v-carousel-item cover v-for="(item, index) in carouselItems" :src="item.imageUrl" :key="index">
           </v-carousel-item>

@@ -2,16 +2,18 @@
 <template>
     <v-main>
     <!-- use $route.params.id to get data from api -->
-    <!-- <v-container>
-        <v-carousel cycle=true interval="2000"> -->
-          <!-- 輪播內容 -->
-          <!-- <v-carousel-item cover v-for="(img, index) in item.imageUrl" :src="img" :key="index">
-          </v-carousel-item>
-        </v-carousel>
-    </v-container> -->
+    <v-container>
+        
+    </v-container>
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
       <v-container v-if="item">
+        <v-carousel :cycle=true interval="3000">
+          <!-- 輪播內容 -->
+          <v-carousel-item cover v-for="(img, index) in item.image_urls" :src="img" :key="index">
+        </v-carousel-item>
+        </v-carousel>
+        <br>
         <v-row>
         <h1>{{ item.title }}</h1>
         </v-row>
@@ -23,26 +25,45 @@
         <v-row>
         <v-btn @click="$router.go(-1)">回到上一頁</v-btn>
         </v-row>
+        {{ message }}
       </v-container>
       <v-container v-else>
         <p>Loading</p>
+        {{ message }}
       </v-container>
       <!-- {{ item }} -->
 </v-main>
   </template>
 
 <script>
-import axios from 'axios'
+import http from "../http-common"
+
 export default {
     
     created() {
-        axios
-            .get('http://127.0.0.1:8000/new/' + this.$route.params.id + '/')
-            .then(response => (this.item = response.data))
+        // axios
+        //     .get('http://127.0.0.1:8000/new/' + this.$route.params.id + '/')
+        //     .then(response => (this.item = response.data))
+        http.get('/get_new_with_images/' + this.$route.params.id + '/')
+            .then(response => this.item = response.data)
+            .catch(error => {
+                    if (error.response) {
+                        // 在控制台顯示後端返回的詳細錯誤訊息
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                        // 將錯誤訊息顯示在用戶界面上
+                        this.message = error.response.data.detail || '發生了未知錯誤';
+                    } else {
+                        // 處理其他類型的錯誤
+                        console.error('錯誤訊息:', error.message);
+                    }
+                })
     },
     data() {
         return {
             item: null,
+            message: null,
         }
     },
     // computed: {

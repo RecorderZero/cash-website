@@ -186,6 +186,11 @@ const routes = [
     ],
   },
   {
+    path: '/image',
+    name: 'Image',
+    component: () => import(/* webpackChunkName: "image" */ '@/components/image.vue'),
+  },
+  {
     path: '/forgotPassword',
     name: 'ForgotPassword',
     component: () => import(/* webpackChunkName: "forgotPassword" */ '@/pages/forgotPassword.vue'),
