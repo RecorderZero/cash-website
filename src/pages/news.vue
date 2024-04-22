@@ -2,9 +2,6 @@
 <template>
     <v-main>
     <!-- use $route.params.id to get data from api -->
-    <v-container>
-        
-    </v-container>
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
       <v-container v-if="item">

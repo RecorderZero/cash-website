@@ -1,9 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-main class="pt-0">
-      <v-carousel :cycle="true" interval="3000">
+      <v-container v-if="!carouselItems">
+          跑馬燈加載中
+      </v-container>
+      <v-carousel v-else :cycle=true interval="3000">
           <!-- 輪播內容 -->
-          <v-carousel-item cover v-for="(item, index) in carouselItems" :src="item.imageUrl" :key="index">
+          <v-carousel-item cover v-for="(item, index) in carouselItems" :src="item" :key="index">
           </v-carousel-item>
       </v-carousel>
       <v-container>
@@ -46,14 +49,15 @@
 
 <script>
 import router from '@/router';
+import http from '../http-common'
 
 export default {
   data() {
       return {
           carouselItems: [
-              { imageUrl: "/src/assets/carousel1.jpg" },
-              { imageUrl: "/src/assets/carousel2.jpg" },
-              { imageUrl: "/src/assets/carousel3.jpg" },
+              // { imageUrl: "/src/assets/carousel1.jpg" },
+              // { imageUrl: "/src/assets/carousel2.jpg" },
+              // { imageUrl: "/src/assets/carousel3.jpg" },
           ],
           information: [
               {
@@ -110,6 +114,23 @@ export default {
     navigator(classification) {
       router.push({ name: 'ProjectsOverview' , query: {class: classification}})
     },
+  },
+  created() {
+    http.get('get_valid_carousel/')
+        .then(response => this.carouselItems = response.data.image_urls)
+        .catch(error => {
+          if (error.response) {
+            // 在控制台顯示後端返回的詳細錯誤訊息
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            // 將錯誤訊息顯示在用戶界面上
+            this.message = error.response.data.detail || '發生了未知錯誤';
+          } else {
+            // 處理其他類型的錯誤
+            console.error('錯誤訊息:', error.message);
+          }
+        })
   },
 };
 
