@@ -22,7 +22,7 @@
           </v-row>
           <v-row>
             <v-col align="center">
-          <v-btn to="/news?class=all">
+          <v-btn to="/news?class=全部">
             更多消息
           </v-btn>
           </v-col>
@@ -36,7 +36,7 @@
                     <v-card 
                       :elevation="isHovering ? 12 : 2"
                       v-bind="props">
-                      <v-img :src="project.imageUrl" cover @click="navigator(project.class)"></v-img>
+                      <v-img :src="project.imageUrl" cover @click="navigator(project.name)"></v-img>
                     </v-card>
                   </v-hover>
                   <!-- <v-row><v-img :src="project.imageUrl" @click="navigator('test')"></v-img></v-row> -->
@@ -54,11 +54,7 @@ import http from '../http-common'
 export default {
   data() {
       return {
-          carouselItems: [
-              // { imageUrl: "/src/assets/carousel1.jpg" },
-              // { imageUrl: "/src/assets/carousel2.jpg" },
-              // { imageUrl: "/src/assets/carousel3.jpg" },
-          ],
+          carouselItems: [],
           information: [
               {
                     id: 1,

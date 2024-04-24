@@ -25,13 +25,13 @@ const buttons = [
         textClass: 'text-green',
     },
     {
-        value: 'news?class=all',
+        value: 'news?class=全部',
         text: '最新消息',
         icon: 'mdi-newspaper-variant',
         textClass: 'text-brown-darken-1',
     },
     {
-        value: 'projects?class=all',
+        value: 'projects?class=全部',
         text: '工程實績',
         icon: 'mdi-hammer',
         textClass: 'text-red',

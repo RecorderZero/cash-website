@@ -2,8 +2,8 @@
     <v-main>
       <!-- button filter -->
       <v-container>
-          <v-btn text="全部" :to="hrefprefix + '?class=all'" @click="handleClick('all')" :class="{ 'highlight': selectedCategory === 'all'}"></v-btn>
-          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.english_text" @click="handleClick(category.english_text)" :class="{ 'highlight': selectedCategory === category.english_text}"></v-btn>
+          <v-btn text="全部" :to="hrefprefix + '?class=全部'"></v-btn>
+          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.chinese_text"></v-btn>
       </v-container>
       <!-- {{ displayItems }} -->
       <!-- 顯示 -->
@@ -40,37 +40,32 @@ export default {
     },
     // 是否須將此邏輯丟給後台執行，前台執行太慢
     searching() {
+      // console.log(this.$route.query.class)
       if (!this.displayItems) return [];
-      if (this.$route.query.class == "all") return this.displayItems;
+      if (this.$route.query.class == "全部") return this.displayItems;
       return this.displayItems.filter(item => {
         return item.classification == this.$route.query.class;
       })
     },
   },
   methods: {
-    handleClick(classification) {
+    handleClick() {
       this.pageReset();
-      this.changeStyle(classification);
+      // this.changeStyle(classification);
     },
     pageReset() {
       return this.page = 1
     },
-    changeStyle(classification) {
-      this.selectedCategory = classification
-    }
+    // changeStyle(classification) {
+    //   this.selectedCategory = classification
+    // }
   },
   data() {
     return {
       page: 1,
       perPage: 6,
-      selectedCategory: 'all',
+      selectedCategory: '全部',
     };
   },
 }
 </script>
-
-<style>
-.highlight {
-  background-color: white;
-}
-</style>
