@@ -2,8 +2,8 @@
     <v-main>
       <!-- button filter -->
       <v-container>
-          <v-btn text="全部" :to="hrefprefix + '?class=全部'"></v-btn>
-          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.chinese_text"></v-btn>
+          <v-btn text="全部" :to="hrefprefix + '?class=全部'" @click="handleClick"></v-btn>
+          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.chinese_text" @click="handleClick"></v-btn>
       </v-container>
       <!-- {{ displayItems }} -->
       <!-- 顯示 -->
@@ -16,7 +16,7 @@
               <v-img cover :src="item.imageUrl" height="200"></v-img>
               <v-card-text><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ item.date }}</v-card-text>
               <v-card-title>{{ item.title }}</v-card-title>
-              <v-card-text> {{ item.content }}</v-card-text>
+              <!-- <v-card-text> {{ item.content }}</v-card-text> -->
             </v-card>
           </v-col>
         </v-row>
