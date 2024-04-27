@@ -8,13 +8,8 @@
           <v-carousel-item cover v-for="(img, index) in item.image_urls" :src="img" :key="index">
           </v-carousel-item>
         </v-carousel>
-    </v-container>
-    <v-container v-else>
-        投影片加載中
-    </v-container>
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
-      <v-container v-if="item">
         <v-row>
         <h1>{{ item.title }}</h1>
         </v-row>
