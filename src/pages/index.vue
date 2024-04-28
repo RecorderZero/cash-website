@@ -4,20 +4,29 @@
       <v-container v-if="!carouselItems">
           跑馬燈加載中
       </v-container>
-      <v-carousel v-else :cycle=true interval="3000">
+      <v-container v-else>
+      <v-carousel :cycle=true interval="3000">
           <!-- 輪播內容 -->
-          <v-carousel-item cover v-for="(item, index) in carouselItems" :src="item" :key="index">
+          <v-carousel-item v-for="(item, index) in carouselItems" :src="item" :key="index">
           </v-carousel-item>
       </v-carousel>
+    </v-container>
       <v-container>
           <h2>最新消息</h2>
           <v-row>
-              <v-col v-for="(info, index) in information" :key="index" cols="12" sm="6" md="4">
-                  <v-card link :to="info.class + '/' + info.id">
-                      <v-img cover :src="info.imageUrl" height="200"></v-img>
-                      <v-card-title>{{ info.name }}</v-card-title>
-                      <v-card-text>{{ info.description }}</v-card-text>
-                  </v-card>
+              <v-col v-for="(info, index) in news" :key="index" cols="12" sm="6" md="4">
+                  <v-hover v-slot="{ isHovering, props }">
+                    <v-card 
+                      :elevation="isHovering ? 12 : 2"
+                      v-bind="props"
+                      link
+                      :to="'news/' + info.id"
+                      >
+                      <v-img :src="info.imageUrl" height="300px"></v-img>
+                      <v-card-text><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ info.date }}</v-card-text>
+                      <v-card-title>{{ info.title }}</v-card-title>
+                    </v-card>
+                  </v-hover>
               </v-col>
           </v-row>
           <v-row>
@@ -35,11 +44,11 @@
                   <v-hover v-slot="{ isHovering, props }">
                     <v-card 
                       :elevation="isHovering ? 12 : 2"
-                      v-bind="props">
-                      <v-img :src="project.imageUrl" cover @click="navigator(project.name)"></v-img>
+                      v-bind="props"
+                      >
+                      <v-img :src="project.imageUrl" height="300px" @click="navigator(project.name)"></v-img>
                     </v-card>
                   </v-hover>
-                  <!-- <v-row><v-img :src="project.imageUrl" @click="navigator('test')"></v-img></v-row> -->
                   <v-row class="pa-6" justify="center"><h3>{{ project.name }}</h3></v-row>
               </v-col>
           </v-row>
@@ -55,29 +64,7 @@ export default {
   data() {
       return {
           carouselItems: [],
-          information: [
-              {
-                    id: 1,
-                  name: "金質獎",
-                  description: "2023金質獎",
-                  imageUrl: "/src/assets/carousel1.jpg",
-                  class: "news",
-              },
-              {
-                    id: 2,
-                  name: "獎狀",
-                  description: "2023獎狀",
-                  imageUrl: "/src/assets/carousel2.jpg",
-                  class: "news",
-              },
-              {
-                    id: 3,
-                  name: "尾牙",
-                  description: "2023尾牙",
-                  imageUrl: "/src/assets/carousel3.jpg",
-                  class: "news",
-              },
-          ],
+          news: [],
           projects: [
             {
               id: 1,
@@ -127,6 +114,9 @@ export default {
             console.error('錯誤訊息:', error.message);
           }
         })
+    http.get('/new?num=4')
+        .then(response => this.news = response.data)
+        .catch(error => console.log(error))
   },
 };
 

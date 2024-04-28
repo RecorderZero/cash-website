@@ -5,7 +5,7 @@
     <v-container v-if="item">
         <v-carousel :cycle=true interval="2000">
           <!-- 輪播內容 -->
-          <v-carousel-item cover v-for="(img, index) in item.image_urls" :src="img" :key="index">
+          <v-carousel-item v-for="(img, index) in item.image_urls" :src="img" :key="index">
           </v-carousel-item>
         </v-carousel>
       <!-- <h1> Welcome to News page </h1>

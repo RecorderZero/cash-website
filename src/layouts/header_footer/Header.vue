@@ -98,7 +98,7 @@ const buttons = [
                 </v-list-item>
             </v-list>
         </v-menu>
-        <v-menu min-width="200px" rounded open-on-hover>
+        <!-- <v-menu min-width="200px" rounded open-on-hover>
             <template v-slot:activator="{ props }">
             <v-btn v-bind="props"  icon="mdi-login">
             </v-btn>
@@ -111,19 +111,7 @@ const buttons = [
                     <v-list-item-title>註冊帳號</v-list-item-title>
                 </v-list-item>
             </v-list>
-            <!-- <v-card>
-            <v-card-text>
-                <div class="mx-auto text-center">
-                <v-btn rounded variant="text" to="/login">
-                    Login
-                </v-btn>
-                <v-btn rounded variant="text" to="/register">
-                    Register
-                </v-btn>
-                </div>
-            </v-card-text>
-            </v-card> -->
-        </v-menu>
+        </v-menu> -->
         <!-- 頭像 -->
         <!-- <v-menu min-width="200px" rounded>
             <template v-slot:activator="{ props }">

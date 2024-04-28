@@ -7,7 +7,7 @@
       <v-container v-if="item">
         <v-carousel :cycle=true interval="3000">
           <!-- 輪播內容 -->
-          <v-carousel-item cover v-for="(img, index) in item.image_urls" :src="img" :key="index">
+          <v-carousel-item alt="carousel" v-for="(img, index) in item.image_urls" :src="img" :key="index">
         </v-carousel-item>
         </v-carousel>
         <br>
