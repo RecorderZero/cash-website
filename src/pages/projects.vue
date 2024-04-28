@@ -10,6 +10,7 @@
         </v-carousel>
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
+        <br>
         <v-row>
         <h1>{{ item.title }}</h1>
         </v-row>
