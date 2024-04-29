@@ -27,7 +27,9 @@ const socialMedias = reactive([
     <v-footer rounded class="bg-grey-lighten-1">
         <v-row justify="center" no-gutters>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/index">首頁</v-btn>
-            <!-- <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/resume">Resume</v-btn> -->
+            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/news?class=全部">最新消息</v-btn>
+            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/projects?class=全部">工程實績</v-btn>
+            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/service">服務項目</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/about">關於我們</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/contact">聯絡我們</v-btn>
 
