@@ -99,7 +99,7 @@ export default {
     },
   },
   created() {
-    http.get('get_valid_carousel/')
+    http.get('/get_valid_carousel?source=front')
         .then(response => this.carouselItems = response.data.image_urls)
         .catch(error => {
           if (error.response) {
