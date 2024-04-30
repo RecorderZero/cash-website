@@ -27,7 +27,7 @@
             <v-icon icon="mdi-map-marker"></v-icon><p>{{ '地點：' + item.location }}</p>
         </v-row>
         <v-row>
-            <v-icon icon="mdi-calendar-check"></v-icon><p>{{ '執行期間：' + item.date }}</p>
+            <v-icon icon="mdi-calendar-check"></v-icon><p>{{ '執行期間：' + item.startDate + '~' + item.endDate }}</p>
         </v-row>
         <br><br>
         <v-row>

@@ -114,7 +114,7 @@ export default {
             console.error('錯誤訊息:', error.message);
           }
         })
-    http.get('/new?num=4')
+    http.get('/new?num=6')
         .then(response => this.news = response.data)
         .catch(error => console.log(error))
   },

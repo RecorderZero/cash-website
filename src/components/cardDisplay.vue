@@ -14,7 +14,8 @@
           <v-col v-for="item in displayed" :key="item.id" cols="12" sm="6" md="4">
             <v-card link :to="hrefprefix + '/' + item.id">
               <v-img cover :src="item.imageUrl" height="200"></v-img>
-              <v-card-text><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ item.date }}</v-card-text>
+              <v-card-text v-if="hrefprefix === 'news'"><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ item.date }}</v-card-text>
+              <v-card-text v-if="hrefprefix === 'projects'"><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ item.startDate + '~' + item.endDate  }}</v-card-text>
               <v-card-title>{{ item.title }}</v-card-title>
               <!-- <v-card-text> {{ item.content }}</v-card-text> -->
             </v-card>
