@@ -69,9 +69,9 @@
                   <h4 class="text-h4">專業技術團隊</h4>
                   <v-container>
                     <v-row>
-                        <v-col md="4" sm="6" v-for="(item, index) in professionTeam" :key="index">
+                        <v-col sm="6" md="3" v-for="(item, index) in professionTeam" :key="index">
                             <v-icon size="x-large">{{ item.icon }}</v-icon>
-                            <p>{{ item.text }}</p>
+                            <p class="text-h6">{{ item.text }}</p>
                         </v-col>
                     </v-row>
                   </v-container>

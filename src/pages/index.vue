@@ -22,7 +22,7 @@
                       link
                       :to="'news/' + info.id"
                       >
-                      <v-img :src="info.imageUrl" height="300px"></v-img>
+                      <v-img :src="info.imageUrl" height="200"></v-img>
                       <v-card-text><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ info.date }}</v-card-text>
                       <v-card-title>{{ info.title }}</v-card-title>
                     </v-card>
@@ -46,7 +46,7 @@
                       :elevation="isHovering ? 12 : 2"
                       v-bind="props"
                       >
-                      <v-img :src="project.imageUrl" height="300px" @click="navigator(project.name)"></v-img>
+                      <v-img :src="project.imageUrl" height="200px" @click="navigator(project.name)"></v-img>
                     </v-card>
                   </v-hover>
                   <v-row class="pa-6" justify="center"><h3>{{ project.name }}</h3></v-row>

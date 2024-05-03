@@ -16,13 +16,10 @@
         </v-row>
         <br><br>
         <v-row>
-        <p>{{ item.content }}</p>
+        <p v-html="item.content"></p>
         <v-divider class="border-opacity-50"></v-divider>
         </v-row>
         <br><br>
-        <v-row>
-            <v-icon icon="mdi-account"></v-icon><p>{{ '參與成員：' + employees }}</p>
-        </v-row>
         <v-row>
             <v-icon icon="mdi-map-marker"></v-icon><p>{{ '地點：' + item.location }}</p>
         </v-row>
@@ -49,18 +46,19 @@ export default {
         http.get('/get_project_with_images/' + this.$route.params.id + '/')
             .then(response => {
                 this.item = response.data;
+                this.item.content = this.item.content.replaceAll('\n', '<br>')
                 // console.log(this.item)
             })
-            .then(() => {
-                // console.log(this.item.employee)
-                const employees = JSON.parse(this.item.employee)
-                // console.log("employees:" + employees)
-                for(let x = 0; x < employees.length; x++) {
-                    // console.log("employees[" + x + ']'+ employees[x])
-                    this.employees.push(employees[x].fields.name)
-                    // console.log(this.employees)
-                }
-            })
+            // .then(() => {
+            //     // console.log(this.item.employee)
+            //     const employees = JSON.parse(this.item.employee)
+            //     // console.log("employees:" + employees)
+            //     for(let x = 0; x < employees.length; x++) {
+            //         // console.log("employees[" + x + ']'+ employees[x])
+            //         this.employees.push(employees[x].fields.name)
+            //         // console.log(this.employees)
+            //     }
+            // })
             .catch(error => {
                 console.log(error);
             })
