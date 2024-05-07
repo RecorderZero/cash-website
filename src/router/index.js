@@ -10,11 +10,12 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: "/",
-    redirect: "/index",
+    redirect: "/%E9%A6%96%E9%A0%81",
   },
   {
-    path: '/index',
-    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    // 首頁
+    path: '/%E9%A6%96%E9%A0%81',
+    component: () => import('@/layouts/sandwich/HomeLayout.vue'),
     children: [
       {
         path: '',
@@ -27,21 +28,23 @@ const routes = [
     ],
   },
   {
-    path: '/service',
+    // 服務項目
+    path: '/%E6%9C%8D%E5%8B%99%E9%A0%85%E7%9B%AE/:page',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
         path: '',
-        name: 'Service',
+        name: 'Technology',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "service" */ '@/pages/service.vue'),
+        component: () => import(/* webpackChunkName: "technology" */ '@/pages/technology.vue'),
       },
     ],
   },
   {
-    path: '/news',
+    // 最新消息
+    path: '/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/category/:category',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
@@ -55,7 +58,8 @@ const routes = [
     ],
   },
   {
-    path: '/news/:id',
+    // 最新消息
+    path: '/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/:id',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
@@ -69,7 +73,8 @@ const routes = [
     ],
   },
   {
-    path: '/projects',
+    // 工程實績
+    path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/category/:category',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
@@ -83,7 +88,8 @@ const routes = [
     ],
   },
   {
-    path: '/projects/:id',
+    // 工程實績
+    path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/details/:id',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
@@ -97,7 +103,8 @@ const routes = [
     ],
   },
   {
-    path: '/about',
+    // 關於開巨
+    path: '/%E9%97%9C%E6%96%BC%E9%96%8B%E5%B7%A8/:page',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
@@ -111,7 +118,8 @@ const routes = [
     ],
   },
   {
-    path: '/contact',
+    // 聯絡我們
+    path: '/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
@@ -121,6 +129,21 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "contact" */ '@/pages/contact.vue'),
+      },
+    ],
+  },
+  {
+    // 永續發展
+    path: '/%E6%B0%B8%E7%BA%8C%E7%99%BC%E5%B1%95/:page',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Esg',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "contact" */ '@/pages/esg.vue'),
       },
     ],
   },

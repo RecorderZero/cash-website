@@ -1,16 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <v-main>
+    <v-main class="pa-0">
     <!-- use $route.params.id to get data from api -->
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
-      <v-container v-if="item">
+      <v-container v-if="item" class="pa-0" fluid>
         <v-carousel :cycle=true interval="3000">
           <!-- 輪播內容 -->
           <v-carousel-item alt="carousel" v-for="(img, index) in item.image_urls" :src="img" :key="index">
         </v-carousel-item>
         </v-carousel>
-        <br>
+        <!-- <br>
         <v-row>
         <h1>{{ item.title }}</h1>
         </v-row>
@@ -22,7 +22,7 @@
         <v-row>
         <v-btn @click="$router.go(-1)">回到上一頁</v-btn>
         </v-row>
-        {{ message }}
+        {{ message }} -->
       </v-container>
       <v-container v-else>
         <p>Loading</p>

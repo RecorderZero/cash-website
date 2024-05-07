@@ -1,6 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <cardDisplay :categories="categories" :displayItems="projects" :hrefprefix="hrefprefix"/>
+    <v-container v-if="projects">
+    <cardDisplay :displayItems="projects" :hrefprefix="hrefprefix"/>
+    </v-container>
+    <v-container v-else>
+        loading
+    </v-container>
+  <!-- <cardDisplay :categories="categories" :displayItems="projects" :hrefprefix="hrefprefix"/> -->
     <!-- {{ categories }}
     {{ projects }} -->
 </template>
@@ -12,17 +18,24 @@ export default {
         return {
             projects: null,
             categories: null,
-            hrefprefix: 'projects',
+            hrefprefix: '%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE',
         }
     },
     created () {
-        axios
-            .get('http://127.0.0.1:8000/project/')
-            .then(response => (this.projects = response.data))
-        axios
-            .get('http://127.0.0.1:8000/projectclassification/')
-            .then(response => (this.categories = response.data))
+        this.fetchData();
     },
+    methods: {
+        fetchData() {
+            this.categories = this.$route.params.category
+            axios
+            .get('http://127.0.0.1:8000/project/?category=' + this.$route.params.category)
+            .then(response => {this.projects = response.data})
+            .catch(error => {console.log(error.response)})
+        }
+    },
+    watch: {
+        '$route': 'fetchData'
+    }
 //   data() {
 //   return {
 //       hrefprefix: 'projects',

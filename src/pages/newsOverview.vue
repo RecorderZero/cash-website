@@ -1,8 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <cardDisplay :categories="categories" :displayItems="news" :hrefprefix="hrefprefix"/>
+    <v-container v-if="news">
+    <cardDisplay :displayItems="news" :hrefprefix="hrefprefix"/>
+    </v-container>
+    <v-container v-else>
+        loading
+    </v-container>
     <!-- {{ news }}
     {{ categories }} -->
+    <!-- {{ this.$route.params.category }}
+    {{ news }} -->
 </template>
 
 <script>
@@ -13,18 +20,23 @@ export default {
         return {
             news: null,
             categories: null,
-            hrefprefix: 'news',
+            hrefprefix: '%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF',
         }
     },
     created () {
-        axios
-            .get('http://127.0.0.1:8000/classification/')
-            .then(response => {this.categories = response.data})
-            .catch(error => {console.log(error.response)})
-        axios
-            .get('http://127.0.0.1:8000/new/')
+        this.fetchData();
+    },
+    methods: {
+        fetchData() {
+            this.categories = this.$route.params.category
+            axios
+            .get('http://127.0.0.1:8000/new/?category=' + this.$route.params.category)
             .then(response => {this.news = response.data})
             .catch(error => {console.log(error.response)})
+        }
     },
+    watch: {
+        '$route': 'fetchData'
+    }
 }
 </script>
