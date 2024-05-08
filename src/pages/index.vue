@@ -1,4 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+<script setup>
+import { useDisplay } from 'vuetify';
+const { mobile } = useDisplay()
+</script>
 <template>
   <v-main class="pt-0">
       <v-container v-if="!carouselItems">
@@ -25,6 +29,28 @@
              </v-carousel-item>
            </v-carousel>
     </v-container>
+    <v-container>
+    <h2 align="center" class="pb-5">✦最新消息✦</h2>
+    <v-row justify="space-around">
+      <v-col v-for="(item, index) in news" :key="index" cols="12">
+        <div v-if="!mobile" class="rounded-pill mx-auto" style="height: 50px; width: 80%; background-color: #8496A2; position: relative;">
+            <sapn style="position: absolute;transform: translate(70%,50%);">{{item.date}}</sapn>
+          <div class="rounded-pill mx-auto" style="position: absolute;bottom: 0px; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
+            <sapn style="position: absolute;transform: translate(80%,50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
+          </div>
+        </div>
+        <div v-else class="rounded-pill mx-auto" style="height: 50px; width: 100%; background-color: #8496A2; position: relative;">
+            <sapn style="position: absolute;transform: translate(30%,50%);">{{item.date}}</sapn>
+          <div class="rounded-pill mx-auto" style="position: absolute;bottom: 0px; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
+            <sapn style="position: absolute;transform: translate(80%,50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
+    <v-container>
+      <h2 align="center">✦精選獲獎✦</h2>
+    </v-container>
       <!-- <v-container>
           <h2>最新消息</h2>
           <v-row>
@@ -50,23 +76,35 @@
           </v-btn>
           </v-col>
         </v-row>
-      </v-container>
+      </v-container> -->
       <v-container>
-          <h2>工程實績</h2><br>
+          <h2 align="center">✦工程實績✦</h2><br>
           <v-row>
-              <v-col v-for="(project, index) in projects" :key="index" cols="12" sm="6" md="4">
+              <v-col v-for="(project, index) in projects" :key="index" cols="12" sm="6" md="3">
                   <v-hover v-slot="{ isHovering, props }">
                     <v-card 
                       :elevation="isHovering ? 12 : 2"
                       v-bind="props"
+                      class="rounded-xl"
                       >
                       <v-img :src="project.imageUrl" height="200px" @click="navigator(project.name)"></v-img>
                     </v-card>
                   </v-hover>
-                  <v-row class="pa-6" justify="center"><h3>{{ project.name }}</h3></v-row>
+                  <h3 align="center" class="pa-2">{{ project.name }}</h3>
               </v-col>
           </v-row>
-      </v-container> -->
+      </v-container>
+      <v-container>
+      <h2 align="center" class="pb-6">✦服務項目✦</h2>
+      <v-row>
+              <v-col v-for="(project, index) in projects" :key="index" cols="12" sm="6" md="3" align="center">
+                      <v-avatar size="200" >
+                      <v-img :src="project.imageUrl" @click="navigator(project.name)"></v-img>
+                    </v-avatar>
+                  <h3 class="pa-2">{{ project.name }}</h3>
+              </v-col>
+          </v-row>
+    </v-container>
   </v-main>
 </template>
 
@@ -75,35 +113,39 @@ import router from '@/router';
 import http from '../http-common'
 
 export default {
+  
   data() {
       return {
+        
           carouselItems: [],
           news: [],
           projects: [
             {
-              id: 1,
               name: "道路工程",
               imageUrl: "/src/assets/road.jpg",
               class: "road",
             },
             {
-              id: 2,
               name: "大地工程",
               imageUrl: "/src/assets/land.jpg",
               class: "land",
             },
             {
-              id: 3,
-              name: "景觀工程",
-              imageUrl: "/src/assets/view.jpg",
-              class: "view",
-            },
-            {
-              id: 4,
               name: "水利工程",
               imageUrl: "/src/assets/water.jpg",
               class: "water",
             },
+            {
+              name: "水保工程",
+              imageUrl: "/src/assets/water.jpg",
+              class: "water",
+            },
+            {
+              name: "景觀工程",
+              imageUrl: "/src/assets/view.jpg",
+              class: "view",
+            },
+            
           ],
       };
   },
@@ -136,3 +178,17 @@ export default {
 
 </script>
 
+<!-- <style>
+.testBlock {
+  .v-image__image {
+    &:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+    }
+  }
+}
+</style> -->

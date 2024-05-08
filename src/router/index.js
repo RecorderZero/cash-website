@@ -15,7 +15,7 @@ const routes = [
   {
     // 首頁
     path: '/%E9%A6%96%E9%A0%81',
-    component: () => import('@/layouts/sandwich/HomeLayout.vue'),
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
         path: '',
