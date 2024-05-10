@@ -11,13 +11,16 @@
             <template v-slot:opposite>
             <h6 class="text-h6">{{ year }}年</h6>
             </template>
-            <v-container>
-            <v-list>
+            <v-card class="text-white" style="background-color: #687A86;">
+                <v-card-title v-for="(item, index) in groupedData[year]" :key="index">
+                    {{ item.title }}
+                </v-card-title>
+            </v-card>
+            <!-- <v-list style="background-color: #687A86;">
                 <v-list-item v-for="(item, index) in groupedData[year]" :key="index">
                 {{ item.title }}
                 </v-list-item>
-            </v-list>
-            </v-container>
+            </v-list> -->
         </v-timeline-item>
     </v-timeline>
 </v-container>

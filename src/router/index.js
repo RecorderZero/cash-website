@@ -118,7 +118,7 @@ const routes = [
     ],
   },
   {
-    // 關於開巨/公司簡介
+    // 關於開巨/歷年獲獎
     path: '/%E9%97%9C%E6%96%BC%E9%96%8B%E5%B7%A8/%E6%AD%B7%E5%B9%B4%E7%8D%B2%E7%8D%8E',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
@@ -129,6 +129,21 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "award" */ '@/pages/award.vue'),
+      },
+    ],
+  },
+  {
+    // 關於開巨/人力資源
+    path: '/%E9%97%9C%E6%96%BC%E9%96%8B%E5%B7%A8/%E4%BA%BA%E5%8A%9B%E7%B5%84%E6%88%90',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Resource',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "resource" */ '@/pages/resource.vue'),
       },
     ],
   },
