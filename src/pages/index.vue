@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { useDisplay } from 'vuetify';
-const { mobile } = useDisplay()
+
 </script>
 <template>
   <v-main class="pt-0">
@@ -30,19 +29,20 @@ const { mobile } = useDisplay()
            </v-carousel>
     </v-container>
     <v-container>
+      <!-- {{mobile}} -->
     <h2 align="center" class="pb-5">✦最新消息✦</h2>
     <v-row justify="space-around">
       <v-col v-for="(item, index) in news" :key="index" cols="12">
-        <div v-if="!mobile" class="rounded-pill mx-auto" style="height: 50px; width: 80%; background-color: #8496A2; position: relative;">
-            <sapn style="position: absolute;transform: translate(70%,50%);">{{item.date}}</sapn>
-          <div class="rounded-pill mx-auto" style="position: absolute;bottom: 0px; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
-            <sapn style="position: absolute;transform: translate(80%,50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
+        <div v-if="!mobile.xs" class="rounded-pill mx-auto" style="height: 50px; width: 80%; background-color: #8496A2; position: relative;">
+            <sapn style="position: absolute;transform: translate(20%,50%);">{{item.date}}</sapn>
+          <div class="rounded-pill mx-auto d-flex justify-center" style="position: absolute;bottom: 0px; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
+            <sapn style="position: absolute;transform: translateY(50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
           </div>
         </div>
-        <div v-else class="rounded-pill mx-auto" style="height: 50px; width: 100%; background-color: #8496A2; position: relative;">
-            <sapn style="position: absolute;transform: translate(30%,50%);">{{item.date}}</sapn>
-          <div class="rounded-pill mx-auto" style="position: absolute;bottom: 0px; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
-            <sapn style="position: absolute;transform: translate(80%,50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
+        <div v-else class="rounded-pill mx-auto pl-3" style="height: 50px; width: 100%; background-color: #8496A2; position: relative;">
+            <sapn style="position: absolute;transform: translate(20%,50%);">{{item.date}}</sapn>
+          <div class="rounded-pill mx-auto d-flex justify-center" style="position: absolute; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
+            <sapn style="position: absolute;transform: translateY(50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
           </div>
         </div>
       </v-col>
@@ -111,12 +111,14 @@ const { mobile } = useDisplay()
 <script>
 import router from '@/router';
 import http from '../http-common'
+import { useDisplay } from 'vuetify';
+
 
 export default {
   
   data() {
       return {
-        
+          mobile: useDisplay(),
           carouselItems: [],
           news: [],
           projects: [
@@ -170,9 +172,20 @@ export default {
             console.error('錯誤訊息:', error.message);
           }
         })
-    http.get('/new?num=6')
-        .then(response => this.news = response.data)
-        .catch(error => console.log(error))
+        http.get('/new?num=6')
+            .then(response => {
+              this.news = response.data.map(item => {
+                if (this.mobile.xs) {
+                  if (item.title.length > 15) {
+                    item.title = item.title.slice(0, 15) + '...'; // 将超过15个字符的标题截断并添加省略号
+                  }
+                  const date = item.date.split('-')
+                  item.date = date[1] + '-' + date[2]
+                }
+                return item;
+              });
+            })
+            .catch(error => console.log(error));
   },
 };
 

@@ -103,8 +103,8 @@ const routes = [
     ],
   },
   {
-    // 關於開巨
-    path: '/%E9%97%9C%E6%96%BC%E9%96%8B%E5%B7%A8/:page',
+    // 關於開巨/公司簡介
+    path: '/%E9%97%9C%E6%96%BC%E9%96%8B%E5%B7%A8/%E5%85%AC%E5%8F%B8%E7%B0%A1%E4%BB%8B',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {
@@ -114,6 +114,21 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '@/pages/about.vue'),
+      },
+    ],
+  },
+  {
+    // 關於開巨/公司簡介
+    path: '/%E9%97%9C%E6%96%BC%E9%96%8B%E5%B7%A8/%E6%AD%B7%E5%B9%B4%E7%8D%B2%E7%8D%8E',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Award',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "award" */ '@/pages/award.vue'),
       },
     ],
   },

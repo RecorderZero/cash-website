@@ -7,18 +7,37 @@ const socialMedias = reactive([
         icon: 'mdi-facebook',
         link: 'https://www.facebook.com/profile.php?id=100002793181780'
     },
-    // {
-    //     icon: 'mdi-twitter',
-    //     link: ''
-    // },
-    // {
-    //     icon: 'mdi-linkedin',
-    //     link: ''
-    // },
-    // {
-    //     icon: 'mdi-instagram',
-    //     link: ''
-    // },
+])
+
+const pages = reactive([
+    {
+        to: '/%E9%A6%96%E9%A0%81',
+        text: '首頁',
+    },
+    {
+        to: '',
+        text: '關於開巨',
+    },
+    {
+        to: '',
+        text: '最新消息',
+    },
+    {
+        to: '',
+        text: '工程實績',
+    },
+    {
+        to: '',
+        text: '服務項目',
+    },
+    {
+        to: '',
+        text: '永續發展',
+    },
+    {
+        to: '/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91',
+        text: '聯絡我們',
+    },
 ])
 </script>
 
@@ -26,13 +45,16 @@ const socialMedias = reactive([
 <template>
     <v-footer rounded class="bg-grey-lighten-1">
         <v-row justify="center" no-gutters>
-            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/%E9%A6%96%E9%A0%81">首頁</v-btn>
+            <v-col class="text-center mt-4" cols="12" justify="center">
+                <v-btn v-for="(page, index) in pages" :key="index" color="white" rounded="xl" class="mx-2" variant="text" :to="page.to">{{ page.text }}</v-btn>
+            </v-col>
+            <!-- <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/%E9%A6%96%E9%A0%81">首頁</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl">關於開巨</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl">最新消息</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl">工程實績</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl">服務項目</v-btn>
             <v-btn color="white" variant="text" class="mx-2" rounded="xl">永續發展</v-btn>
-            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91">聯絡我們</v-btn>
+            <v-btn color="white" variant="text" class="mx-2" rounded="xl" to="/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91">聯絡我們</v-btn> -->
 
 
             <v-col class="text-center mt-4" cols="12">

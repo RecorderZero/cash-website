@@ -9,16 +9,28 @@
       <!-- 顯示 -->
       <!-- 未來page應改成query的方法，以便返回時能到原頁面 -->
       <!-- 抓資料應改成在後台query而非全部抓到前台 -->
-      <v-container>
+      <v-container fluid>
         <v-row>
-          <v-col v-for="item in displayed" :key="item.id" cols="6">
-            <v-card link :to="'/' + hrefprefix + '/details/' + item.id">
-              <v-img :src="item.imageUrl" height="200"></v-img>
+          <v-col v-for="item in displayed" :key="item.id" cols="12" sm="6" align="center">
+            <v-card link :to="'/' + hrefprefix + '/details/' + item.id" style="max-width: 400px;background-color: #687A86;">
+              
+              <v-row align="center" class="ma-0">
+                <v-col cols="4" class="text-white">
+                  <h3 class="pa-2">{{ item.subtitle }}</h3>
+                  <p v-if="hrefprefix === '%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF'" style="position: absolute;bottom: 0px;">{{ item.date }}</p>
+                  <p v-if="hrefprefix === '%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE'" style="position: absolute;bottom: 0px;">{{ item.endDate }}</p>
+                </v-col>
+                <v-col cols="8" class="pa-1">
+                  <v-img :src="item.imageUrl" style="min-height: 200px; max-height: 200px;"></v-img>
+                </v-col>
+              </v-row>
+              <!-- <v-img :src="item.imageUrl" height="200"></v-img>
               <v-card-text v-if="hrefprefix === '%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF'"><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ item.date }}</v-card-text>
               <v-card-text v-if="hrefprefix === '%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE'"><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ item.startDate + '~' + item.endDate  }}</v-card-text>
-              <v-card-title>{{ item.title }}</v-card-title>
+              <v-card-title>{{ item.title }}</v-card-title> -->
               <!-- <v-card-text> {{ item.content }}</v-card-text> -->
             </v-card>
+            <h4 style="word-wrap: break-word; width: 80%;">{{ item.title }}</h4>
           </v-col>
         </v-row>
         <v-pagination v-model="page" :length="Math.ceil(totalItems / perPage)"></v-pagination>
