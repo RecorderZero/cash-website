@@ -8,27 +8,7 @@
   </v-container>
   <v-container>
     <v-row>
-      <v-col sm="12" md="6">
-        <v-list>
-          <v-list-item
-            v-for="(item, index) in company"
-            :key="index"
-            :prepend-icon="item.icon"
-            :title="item.text"
-            ></v-list-item>
-        </v-list>
-      </v-col>
-      <v-col sm="12" md="6">
-        <v-list>
-          <v-list-item
-            v-for="(item, index) in company"
-            :key="index"
-            :prepend-icon="item.icon"
-            :title="item.text"
-            ></v-list-item>
-        </v-list>
-      </v-col>
-      <v-col sm="12" md="6">
+      <v-col cols="12" md="6">
         <v-list>
           <v-list-item
             v-for="(item, index) in company"

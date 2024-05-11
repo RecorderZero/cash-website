@@ -5,7 +5,15 @@
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
       <v-container v-if="item" class="pa-0" fluid>
-        <v-carousel :cycle=true interval="3000">
+        <v-carousel :cycle=true interval="3000" hide-delimiter-background>
+          <template v-slot:prev="{ props }">
+            <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-left" style="background-color: rgba(0, 0, 0, 0);"
+              ></v-btn>
+          </template>
+          <template v-slot:next="{ props }">
+            <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-right" style="background-color: rgba(0, 0, 0, 0);"
+              ></v-btn>
+          </template>
           <!-- 輪播內容 -->
           <v-carousel-item alt="carousel" v-for="(img, index) in item.image_urls" :src="img" :key="index">
         </v-carousel-item>

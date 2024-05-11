@@ -1,11 +1,14 @@
 <template>
   <v-main class="pa-0">
-    <v-container align="center" style="max-height: 500px;">
-    <Bar v-if="chartData.datasets[0].data.length !== 0"
+    <v-container v-if="chartData.datasets[0].data.length !== 0" align="center" style="max-height: 500px;">
+    <Bar
       id="my-chart-id"
       :options="chartOptions"
       :data="chartData"
     />
+  </v-container>
+  <v-container v-else>
+    Loading
   </v-container>
   </v-main>
   </template>
@@ -27,7 +30,10 @@
           datasets: [ {
             label: '在職人數',
             backgroundColor: '#f87979',
-            data: []
+            data: [],
+            borderColor: '#000000',
+            borderWidth: 3,
+            barThickness: 50,
           } ]
         },
         chartOptions: {

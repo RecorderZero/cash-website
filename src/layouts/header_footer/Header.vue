@@ -2,12 +2,12 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useDisplay } from 'vuetify';
+
 
 const route = useRoute();
 const path = computed(() => route.path.replace('/', '').split('/')[0]);
 // const pageTitle = ref('');
-const { mobile } = useDisplay()
+
 
 // watch(path, (newValue, oldValue) => {
 //     pageTitle.value = newValue.split('/')[0]
@@ -212,8 +212,9 @@ const buttons = [
         <!-- {{ path }} -->
         <!-- {{ pageTitle }} -->
         <!-- 電腦導航欄 -->
-        <v-spacer v-if="mobile"></v-spacer>
-        <v-btn-toggle divided mandatory>
+        <!-- {{ mobile }} -->
+        <v-spacer v-if="mobile.lgAndUp"></v-spacer>
+        <v-btn-toggle divided mandatory v-if="mobile.lgAndUp">
             <v-btn :to="'/' + buttons[0].code" :class="{ 'text-yellow-darken-2': path === buttons[0].code }" style="text-align: left;">
                 <strong>
                     <span style="font-size: 15px;">
@@ -375,19 +376,114 @@ const buttons = [
         </v-btn-toggle> -->
 
         <!-- 手機導航欄 -->
-        <!-- <v-spacer v-if="!mobile"></v-spacer>
-        <v-menu open-on-hover open-delay="100" close-delay="100" v-if="mobile">
+        <!-- <v-spacer v-if="mobile.lgAndUp"></v-spacer> -->
+        <!-- {{ menu }} -->
+        <v-menu v-model="menu" v-if="mobile.mdAndDown" open-delay="100" close-delay="100">
             <template v-slot:activator="{ props }">
                 <v-btn v-bind="props" class="text-black" icon="mdi-view-list">
                 </v-btn>
             </template>
 
-            <v-list>
-                <v-list-item v-for="(button, index) in buttons" :key="index" :class="button.textClass" :prepend-icon="button.icon" :to="'/' + button.value">
-                    <v-list-item-title>{{ button.text }}</v-list-item-title>
+            <v-list :width="windowWidth">
+                <v-list-item :to="'/' + buttons[0].code">
+                    <v-list-item-title :class="{ 'text-yellow-darken-2': path === buttons[0].code }">{{ buttons[0].text }}</v-list-item-title>
                 </v-list-item>
+                <v-list-group :value="buttons[1].text" @click.stop>
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                        v-bind="props"
+                        :title="buttons[1].text"
+                        :class="{ 'text-yellow-darken-2': path === buttons[1].code }"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        v-for="(button, index) in buttons[1].children"
+                        :key="index"
+                        @click="closeMenu"
+                        :title="button.text"
+                        :value="button.text"
+                        :to="'/' + buttons[1].code + '/' + button.code"
+                    ></v-list-item>
+                </v-list-group>
+                <v-list-group :value="buttons[2].text" @click.stop>
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                        v-bind="props"
+                        :title="buttons[2].text"
+                        :class="{ 'text-yellow-darken-2': path === buttons[2].code }"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        v-for="(button, index) in buttons[2].children"
+                        :key="index"
+                        @click="closeMenu"
+                        :title="button.text"
+                        :value="button.text"
+                        :to="'/' + buttons[2].code + '/category/' + button.code"
+                    ></v-list-item>
+                </v-list-group>
+                <v-list-group :value="buttons[3].text" @click.stop>
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                        v-bind="props"
+                        :title="buttons[3].text"
+                        :class="{ 'text-yellow-darken-2': path === buttons[3].code }"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        v-for="(button, index) in buttons[3].children"
+                        :key="index"
+                        @click="closeMenu"
+                        :title="button.text"
+                        :value="button.text"
+                        :to="'/' + buttons[3].code + '/category/' + button.code"
+                    ></v-list-item>
+                </v-list-group>
+                <v-list-group :value="buttons[4].text" @click.stop>
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                        v-bind="props"
+                        :title="buttons[4].text"
+                        :class="{ 'text-yellow-darken-2': path === buttons[4].code }"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        v-for="(button, index) in buttons[4].children"
+                        :key="index"
+                        @click="closeMenu"
+                        :title="button.text"
+                        :value="button.text"
+                        :to="'/' + buttons[4].code + '/' + button.code"
+                    ></v-list-item>
+                </v-list-group>
+                <v-list-group :value="buttons[5].text" @click.stop>
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                        v-bind="props"
+                        :title="buttons[5].text"
+                        :class="{ 'text-yellow-darken-2': path === buttons[5].code }"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        v-for="(button, index) in buttons[5].children"
+                        :key="index"
+                        @click="closeMenu"
+                        :title="button.text"
+                        :value="button.text"
+                        :to="'/' + buttons[5].code + '/' + button.code"
+                    ></v-list-item>
+                </v-list-group>
+                <v-list-item :to="'/' + buttons[6].code">
+                    <v-list-item-title :class="{ 'text-yellow-darken-2': path === buttons[6].code }">{{ buttons[6].text }}</v-list-item-title>
+                </v-list-item>
+
             </v-list>
-        </v-menu> -->
+        </v-menu>
         <!-- <v-menu min-width="200px" rounded open-on-hover>
             <template v-slot:activator="{ props }">
             <v-btn v-bind="props"  icon="mdi-login">
@@ -435,3 +531,26 @@ const buttons = [
         </v-menu> -->
     </v-app-bar>
 </template>
+<script>
+import { useDisplay } from 'vuetify';
+
+export default {
+    data() {
+        return {
+            menu: false,
+            mobile: null,
+            windowWidth: null,
+        }
+    },
+    created() {
+        this.mobile = useDisplay()
+        this.windowWidth = this.mobile.width * 0.9
+    },
+    methods: {
+        closeMenu() {
+            this.menu = false
+        }
+    }
+}
+
+</script>

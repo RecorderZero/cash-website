@@ -2,10 +2,7 @@
 
 <template>
     <v-main class="pa-0">
-        <!-- {{data}} -->
-        <!-- {{ groupedData }} -->
         <v-container v-if="data">
-            {{ console.log(groupedData) }}
     <v-timeline>
         <v-timeline-item v-for="year in Object.keys(groupedData).reverse()" :key="year">
             <template v-slot:opposite>
@@ -56,7 +53,7 @@ export default {
         groupedData() {
             const grouped = {}
             this.data.forEach(element => {
-                console.log(element)
+                // console.log(element)
                 if (!grouped[element.year]) {
                     grouped[element.year] = []
                 }

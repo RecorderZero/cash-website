@@ -8,7 +8,15 @@
           跑馬燈加載中
       </v-container>
       <v-container v-else class="pa-0 fill-height" fluid>
-         <v-carousel cycle interval="3000" fluid hide-delimiters>
+         <v-carousel cycle interval="3000" fluid hide-delimiter-background>
+          <template v-slot:prev="{ props }">
+            <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-left" style="background-color: rgba(0, 0, 0, 0);"
+              ></v-btn>
+          </template>
+          <template v-slot:next="{ props }">
+            <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-right" style="background-color: rgba(0, 0, 0, 0);"
+              ></v-btn>
+          </template>
           <v-carousel-item
             v-for="(item,i) in carouselItems"
             :key="i"
@@ -29,14 +37,13 @@
            </v-carousel>
     </v-container>
     <v-container>
-      <!-- {{mobile}} -->
     <h2 align="center" class="pb-5">✦最新消息✦</h2>
     <v-row justify="space-around">
       <v-col v-for="(item, index) in news" :key="index" cols="12">
         <div v-if="!mobile.xs" class="rounded-pill mx-auto" style="height: 50px; width: 80%; background-color: #8496A2; position: relative;">
             <sapn style="position: absolute;transform: translate(20%,50%);">{{item.date}}</sapn>
           <div class="rounded-pill mx-auto d-flex justify-center" style="position: absolute;bottom: 0px; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
-            <sapn style="position: absolute;transform: translateY(50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
+            <sapn style="position: absolute;transform: translateY(50%); overflow: hidden;"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
           </div>
         </div>
         <div v-else class="rounded-pill mx-auto pl-3" style="height: 50px; width: 100%; background-color: #8496A2; position: relative;">
@@ -87,7 +94,7 @@
                       v-bind="props"
                       class="rounded-xl"
                       >
-                      <v-img :src="project.imageUrl" height="200px" @click="navigator(project.name)"></v-img>
+                      <v-img :src="project.imageUrl" height="200px" @click="navigatorProject(project.code)"></v-img>
                     </v-card>
                   </v-hover>
                   <h3 align="center" class="pa-2">{{ project.name }}</h3>
@@ -98,8 +105,8 @@
       <h2 align="center" class="pb-6">✦服務項目✦</h2>
       <v-row>
               <v-col v-for="(project, index) in projects" :key="index" cols="12" sm="6" md="3" align="center">
-                      <v-avatar size="200" >
-                      <v-img :src="project.imageUrl" @click="navigator(project.name)"></v-img>
+                      <v-avatar size="200">
+                      <v-img :src="project.imageUrl" @click="navigatorService(project.code)"></v-img>
                     </v-avatar>
                   <h3 class="pa-2">{{ project.name }}</h3>
               </v-col>
@@ -124,36 +131,44 @@ export default {
           projects: [
             {
               name: "道路工程",
+              code: "%E9%81%93%E8%B7%AF%E5%B7%A5%E7%A8%8B",
               imageUrl: "/src/assets/road.jpg",
-              class: "road",
+              // class: "road",
             },
             {
               name: "大地工程",
+              code: "%E5%A4%A7%E5%9C%B0%E5%B7%A5%E7%A8%8B",
               imageUrl: "/src/assets/land.jpg",
-              class: "land",
+              // class: "land",
             },
             {
               name: "水利工程",
+              code: "%E6%B0%B4%E5%88%A9%E5%B7%A5%E7%A8%8B",
               imageUrl: "/src/assets/water.jpg",
-              class: "water",
+              // class: "water",
             },
             {
               name: "水保工程",
+              code: "%E6%B0%B4%E4%BF%9D%E5%B7%A5%E7%A8%8B",
               imageUrl: "/src/assets/water.jpg",
-              class: "water",
+              // class: "water",
             },
             {
               name: "景觀工程",
+              code: "%E6%99%AF%E8%A7%80%E5%B7%A5%E7%A8%8B",
               imageUrl: "/src/assets/view.jpg",
-              class: "view",
+              // class: "view",
             },
             
           ],
       };
   },
   methods: {
-    navigator(category) {
-      router.push({ name: 'ProjectsOverview' , params: category})
+    navigatorProject(category) {
+      router.push({ path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/category/' + category })
+    },
+    navigatorService(category) {
+      router.push({ path: '/%E6%9C%8D%E5%8B%99%E9%A0%85%E7%9B%AE/' + category })
     },
   },
   created() {
