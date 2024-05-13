@@ -303,7 +303,15 @@ const buttons = [
             </v-list-item>
         </v-list>
         </v-menu>
-        <v-menu
+        <v-btn :to="'/' + buttons[4].code" :class="{ 'text-yellow-darken-2': path === buttons[4].code }" style="text-align: left;">
+                <strong>
+                    <span style="font-size: 15px;">
+                        {{ buttons[4].text }}<br>
+                        <span style="font-size: 10px;">{{ buttons[4].english }}</span>
+                    </span>
+                </strong>
+            </v-btn>
+        <!-- <v-menu
         open-on-hover
         open-delay="0"
         >
@@ -329,7 +337,7 @@ const buttons = [
 
             </v-list-item>
         </v-list>
-        </v-menu>
+        </v-menu> -->
         <v-menu
         open-on-hover
         open-delay="0"
@@ -442,7 +450,10 @@ const buttons = [
                         :to="'/' + buttons[3].code + '/category/' + button.code"
                     ></v-list-item>
                 </v-list-group>
-                <v-list-group :value="buttons[4].text" @click.stop>
+                <v-list-item :to="'/' + buttons[4].code">
+                    <v-list-item-title :class="{ 'text-yellow-darken-2': path === buttons[4].code }">{{ buttons[4].text }}</v-list-item-title>
+                </v-list-item>
+                <!-- <v-list-group :value="buttons[4].text" @click.stop>
                     <template v-slot:activator="{ props }">
                         <v-list-item
                         v-bind="props"
@@ -459,7 +470,7 @@ const buttons = [
                         :value="button.text"
                         :to="'/' + buttons[4].code + '/' + button.code"
                     ></v-list-item>
-                </v-list-group>
+                </v-list-group> -->
                 <v-list-group :value="buttons[5].text" @click.stop>
                     <template v-slot:activator="{ props }">
                         <v-list-item

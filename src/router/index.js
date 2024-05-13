@@ -29,7 +29,7 @@ const routes = [
   },
   {
     // 服務項目
-    path: '/%E6%9C%8D%E5%8B%99%E9%A0%85%E7%9B%AE/:page',
+    path: '/%E6%9C%8D%E5%8B%99%E9%A0%85%E7%9B%AE',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {

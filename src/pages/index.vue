@@ -57,6 +57,17 @@
   </v-container>
     <v-container>
       <h2 align="center">✦精選獲獎✦</h2>
+      <v-row>
+              <v-col v-for="(award, index) in awards" :key="index" cols="12" sm="6" md="3">
+                  <v-card 
+                      elevation='2'
+                      class="rounded-xl"
+                      >
+                      <v-img :src="award.imageUrl" height="200px"></v-img>
+                    </v-card>
+                  <h3 align="center" class="pa-2">{{ award.name }}</h3>
+              </v-col>
+          </v-row>
     </v-container>
       <!-- <v-container>
           <h2>最新消息</h2>
@@ -159,8 +170,25 @@ export default {
               imageUrl: "/src/assets/view.jpg",
               // class: "view",
             },
-            
           ],
+          awards: [
+            {
+              name: '金質獎',
+              imageUrl: '/src/assets/carousel1.jpg',
+            },
+            {
+              name: '金質獎',
+              imageUrl: '/src/assets/carousel1.jpg',
+            },
+            {
+              name: '金質獎',
+              imageUrl: '/src/assets/carousel1.jpg',
+            },
+            {
+              name: '金質獎',
+              imageUrl: '/src/assets/carousel1.jpg',
+            },
+          ]
       };
   },
   methods: {
