@@ -74,6 +74,21 @@ const routes = [
   },
   {
     // 工程實績
+    path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/',
+    component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'ProjectsCategory',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "projectsCategory" */ '@/pages/projectsCategory.vue'),
+      },
+    ],
+  },
+  {
+    // 工程實績
     path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/category/:category',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [

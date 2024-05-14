@@ -1,5 +1,5 @@
 <template>
-    <v-main>
+    <v-main class="pa-0">
       <!-- button filter -->
       <!-- <v-container>
           <v-btn text="全部" :to="hrefprefix + '?class=全部'" @click="handleClick"></v-btn>
@@ -12,7 +12,7 @@
       <v-container fluid>
         <v-row>
           <v-col v-for="item in displayed" :key="item.id" cols="12" sm="6" align="center">
-            <v-card link :to="'/' + hrefprefix + '/details/' + item.id" style="max-width: 400px;background-color: #687A86;">
+            <v-card link :to="'/' + hrefprefix + '/details/' + item.id" style="max-width: 400px;background-color: #8496A2;">
               
               <v-row align="center" class="ma-0">
                 <v-col cols="4" class="text-white">

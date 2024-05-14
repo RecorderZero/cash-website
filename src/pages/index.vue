@@ -40,16 +40,16 @@
     <h2 align="center" class="pb-5">✦最新消息✦</h2>
     <v-row justify="space-around">
       <v-col v-for="(item, index) in news" :key="index" cols="12">
-        <div v-if="!mobile.xs" class="rounded-pill mx-auto" style="height: 50px; width: 80%; background-color: #8496A2; position: relative;">
+        <div v-if="!mobile.xs" class="rounded-pill mx-auto" style="height: 50px; width: 80%; background-color: #c3c7c8; position: relative;">
             <sapn style="position: absolute;transform: translate(20%,50%);">{{item.date}}</sapn>
           <div class="rounded-pill mx-auto d-flex justify-center" style="position: absolute;bottom: 0px; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
-            <sapn style="position: absolute;transform: translateY(50%); overflow: hidden;"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
+            <sapn style="position: absolute;transform: translateY(50%); overflow: hidden;"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'" style="color: #000000;">{{item.title}}</router-link></sapn>
           </div>
         </div>
-        <div v-else class="rounded-pill mx-auto pl-3" style="height: 50px; width: 100%; background-color: #8496A2; position: relative;">
+        <div v-else class="rounded-pill mx-auto pl-3" style="height: 50px; width: 100%; background-color: #c3c7c8; position: relative;">
             <sapn style="position: absolute;transform: translate(20%,50%);">{{item.date}}</sapn>
           <div class="rounded-pill mx-auto d-flex justify-center" style="position: absolute; right: 0px; height: 50px; width: 80%; background-color: #687A86;">
-            <sapn style="position: absolute;transform: translateY(50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'">{{item.title}}</router-link></sapn>
+            <sapn style="position: absolute;transform: translateY(50%);"><router-link :to="'/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/details/' + item.id + '/'" style="color: #000000;">{{item.title}}</router-link></sapn>
           </div>
         </div>
       </v-col>

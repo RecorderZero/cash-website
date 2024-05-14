@@ -8,7 +8,7 @@
             <template v-slot:opposite>
             <h6 class="text-h6">{{ year }}年</h6>
             </template>
-            <v-card class="text-white" style="background-color: #687A86;">
+            <v-card class="text-white" style="background-color: #8496A2;">
                 <v-card-title v-for="(item, index) in groupedData[year]" :key="index">
                     {{ item.title }}
                 </v-card-title>
