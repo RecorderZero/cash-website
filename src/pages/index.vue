@@ -105,24 +105,45 @@
                       v-bind="props"
                       class="rounded-xl"
                       >
-                      <v-img :src="project.imageUrl" height="200px" @click="navigatorProject(project.code)"></v-img>
+                      <v-img :src="project.imageUrl" height="200px" @click="navigator(project.code)"></v-img>
                     </v-card>
                   </v-hover>
                   <h3 align="center" class="pa-2">{{ project.name }}</h3>
               </v-col>
           </v-row>
       </v-container>
-      <v-container>
-      <h2 align="center" class="pb-6">✦服務項目✦</h2>
-      <v-row>
-              <v-col v-for="(project, index) in projects" :key="index" cols="12" sm="6" md="3" align="center">
-                      <v-avatar size="200">
-                      <v-img :src="project.imageUrl" @click="navigatorService(project.code)"></v-img>
-                    </v-avatar>
-                  <h3 class="pa-2">{{ project.name }}</h3>
-              </v-col>
-          </v-row>
-    </v-container>
+      <v-container v-if="mobile.mobile">
+        <h2 align="center" class="pb-6">✦服務項目✦</h2>
+        <v-row>
+          <v-col v-for="(project, index) in projects" :key="index" cols="12" sm="6" md="3" align="center">
+                <v-avatar size="200">
+                <v-img :src="project.imageUrl" @click="navigator(project.code)"></v-img>
+              </v-avatar>
+            <h3 class="pa-2">{{ project.name }}</h3>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container v-else>
+        <h2 align="center" class="pb-6">✦服務項目✦</h2>
+        <v-row>
+          <v-col v-for="(project, index) in projects" :key="index" cols="12" sm="6" md="3" align="center">
+            <v-hover v-slot="{ isHovering, props }">
+                <v-avatar size="200" v-bind="props">
+                <v-img :src="project.imageUrl" @click="navigator(project.code)"><v-expand-transition>
+          <div
+              v-if="isHovering"
+              class="d-flex align-center text-white justify-center transition-fast-in-fast-out v-card--reveal"
+              style="height: 100%;"
+            >
+              了解更多
+            </div>
+        </v-expand-transition></v-img>
+              </v-avatar>
+            </v-hover> 
+            <h3 class="pa-2">{{ project.name }}</h3>
+          </v-col>
+        </v-row>
+      </v-container>
   </v-main>
 </template>
 
@@ -192,11 +213,8 @@ export default {
       };
   },
   methods: {
-    navigatorProject(category) {
+    navigator(category) {
       router.push({ path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/category/' + category })
-    },
-    navigatorService(category) {
-      router.push({ path: '/%E6%9C%8D%E5%8B%99%E9%A0%85%E7%9B%AE/' + category })
     },
   },
   created() {
@@ -233,18 +251,3 @@ export default {
 };
 
 </script>
-
-<!-- <style>
-.testBlock {
-  .v-image__image {
-    &:before {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 0;
-    }
-  }
-}
-</style> -->

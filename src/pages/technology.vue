@@ -1,10 +1,34 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 <v-main class="pa-0">
-  <v-container>
+  <v-container v-if="mobile.mobile">
     <v-row>
       <v-col class="text-center pa-10" cols="12" sm="6" md="3" v-for="(technology, index) in technologys" :key="index">
-        <v-img :src="technology.imageUrl"></v-img>
+        <router-link :to="'/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/category/' + technology.code">
+        <v-img :src="technology.imageUrl">
+        </v-img>
+         </router-link>
+          <h3>{{ technology.name }}</h3>
+      </v-col>
+    </v-row>
+  </v-container>
+  <v-container v-else>
+    <v-row>
+      <v-col class="text-center pa-10" cols="12" sm="6" md="3" v-for="(technology, index) in technologys" :key="index">
+        <v-hover v-slot="{ isHovering, props }">
+        <v-img :src="technology.imageUrl" v-bind="props">
+          <router-link :to="'/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/category/' + technology.code">
+          <v-expand-transition>
+          <div
+              v-if="isHovering"
+              class="d-flex align-center text-white justify-center transition-fast-in-fast-out v-card--reveal"
+              style="height: 100%;"
+            >
+              了解更多
+            </div>
+        </v-expand-transition></router-link></v-img>
+        
+        </v-hover>  
           <h3>{{ technology.name }}</h3>
       </v-col>
     </v-row>
@@ -13,9 +37,11 @@
 </template>
 
 <script>
+import { useDisplay } from 'vuetify';
 export default {
   data() {
     return {
+      mobile: useDisplay(),
       technologys: [
             {
               name: "道路工程",

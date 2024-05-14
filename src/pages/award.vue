@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         fetchData() {
-            http.get('/award/')
+            http.get('/historyaward/')
                 .then(response => {
                     this.data = response.data
                 })
