@@ -74,7 +74,7 @@ const routes = [
   },
   {
     // 工程實績
-    path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/',
+    path: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE',
     component: () => import('@/layouts/sandwich/SandwichLayout.vue'),
     children: [
       {

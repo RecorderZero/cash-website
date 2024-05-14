@@ -15,23 +15,23 @@ const pages = reactive([
         text: '首頁',
     },
     {
-        to: '',
+        to: '/%E9%97%9C%E6%96%BC%E9%96%8B%E5%B7%A8/%E5%85%AC%E5%8F%B8%E7%B0%A1%E4%BB%8B',
         text: '關於開巨',
     },
     {
-        to: '',
+        to: '/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/category/%E7%8D%B2%E7%8D%8E%E6%A6%AE%E8%80%80',
         text: '最新消息',
     },
     {
-        to: '',
+        to: '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE',
         text: '工程實績',
     },
     {
-        to: '',
+        to: '/%E6%9C%8D%E5%8B%99%E9%A0%85%E7%9B%AE',
         text: '服務項目',
     },
     {
-        to: '',
+        to: '/%E6%B0%B8%E7%BA%8C%E7%99%BC%E5%B1%95/%E6%B0%B8%E7%BA%8C%E7%AE%A1%E7%90%86',
         text: '永續發展',
     },
     {

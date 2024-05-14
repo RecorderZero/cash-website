@@ -80,7 +80,7 @@ const buttons = [
                 code: '%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE',
                 english: 'PROJECT',
                 text: '工程實績',
-                children: [
+                children: JSON.parse(JSON.stringify([
                     {
                         // value: 'road',
                         code: '%E9%81%93%E8%B7%AF%E5%B7%A5%E7%A8%8B',
@@ -106,7 +106,7 @@ const buttons = [
                         code: '%E6%99%AF%E8%A7%80%E5%B7%A5%E7%A8%8B',
                         text: '景觀工程',
                     },
-                ],
+                ])),
                 // icon: 'mdi-hammer',
                 // textClass: 'text-red',
             },
@@ -115,8 +115,8 @@ const buttons = [
                 code: '%E6%9C%8D%E5%8B%99%E9%A0%85%E7%9B%AE',
                 english: 'TECHNOLOGY',
                 text: '服務項目',
-                children: [
-                {
+                children: JSON.parse(JSON.stringify([
+                    {
                         // value: 'road',
                         code: '%E9%81%93%E8%B7%AF%E5%B7%A5%E7%A8%8B',
                         text: '道路工程',
@@ -141,7 +141,7 @@ const buttons = [
                         code: '%E6%99%AF%E8%A7%80%E5%B7%A5%E7%A8%8B',
                         text: '景觀工程',
                     },
-                ],
+                ])),
                 // icon: 'mdi-cog',
                 // textClass: 'text-grey',
             },
@@ -279,12 +279,15 @@ const buttons = [
         <v-menu
         open-on-hover
         open-delay="0"
+        v-model="projectsMenu"
         >
         <template v-slot:activator="{ props }">
             <v-btn
             v-bind="props"
             :class="{ 'text-yellow-darken-2': path === buttons[3].code }"
             style="text-align: left;"
+            :to="'/' + buttons[3].code"
+            @click="closeProjectsMenu"
             >
             <strong>
                     <span style="font-size: 15px;">
@@ -303,23 +306,18 @@ const buttons = [
             </v-list-item>
         </v-list>
         </v-menu>
-        <v-btn :to="'/' + buttons[4].code" :class="{ 'text-yellow-darken-2': path === buttons[4].code }" style="text-align: left;">
-                <strong>
-                    <span style="font-size: 15px;">
-                        {{ buttons[4].text }}<br>
-                        <span style="font-size: 10px;">{{ buttons[4].english }}</span>
-                    </span>
-                </strong>
-            </v-btn>
-        <!-- <v-menu
+        <v-menu
         open-on-hover
         open-delay="0"
+        v-model="technologyMenu"
         >
         <template v-slot:activator="{ props }">
             <v-btn
             v-bind="props"
             :class="{ 'text-yellow-darken-2': path === buttons[4].code }"
             style="text-align: left;"
+            :to="'/' + buttons[4].code"
+            @click="closeTechnologyMenu"
             >
             <strong>
                     <span style="font-size: 15px;">
@@ -332,12 +330,12 @@ const buttons = [
         </template>
 
         <v-list>
-            <v-list-item v-for="(item, index) in buttons[4].children" :key="index" :to="'/' + buttons[4].code + '/' + item.code">
+            <v-list-item v-for="(item, index) in buttons[4].children" :key="index" @click="handleTechnology(item.code)">
                 <v-list-item-title>{{ item.text }}</v-list-item-title>
 
             </v-list-item>
         </v-list>
-        </v-menu> -->
+        </v-menu>
         <v-menu
         open-on-hover
         open-delay="0"
@@ -385,24 +383,31 @@ const buttons = [
 
         <!-- 手機導航欄 -->
         <!-- <v-spacer v-if="mobile.lgAndUp"></v-spacer> -->
-        <!-- {{ menu }} -->
         <v-menu v-model="menu" v-if="mobile.mdAndDown" open-delay="100" close-delay="100">
             <template v-slot:activator="{ props }">
                 <v-btn v-bind="props" class="text-black" icon="mdi-view-list">
                 </v-btn>
             </template>
 
-            <v-list :width="windowWidth">
+            <v-list :width="getWindowWidth">
                 <v-list-item :to="'/' + buttons[0].code">
                     <v-list-item-title :class="{ 'text-yellow-darken-2': path === buttons[0].code }">{{ buttons[0].text }}</v-list-item-title>
                 </v-list-item>
-                <v-list-group :value="buttons[1].text" @click.stop>
+                <v-list-group :value="buttons[1].text" @click.stop >
                     <template v-slot:activator="{ props }">
+                        <v-row class="mr-0">
+                            <v-col cols="10" sm="11" class="pr-0">
                         <v-list-item
-                        v-bind="props"
+                        
                         :title="buttons[1].text"
+                        append-icon=""
                         :class="{ 'text-yellow-darken-2': path === buttons[1].code }"
                         ></v-list-item>
+                        </v-col>
+                        <v-col cols="2" sm="1" class="pr-0">
+                        <v-btn v-bind="props" icon="mdi-chevron-down" elevation="0"></v-btn>
+                        </v-col>
+                        </v-row>
                     </template>
 
                     <v-list-item
@@ -416,11 +421,18 @@ const buttons = [
                 </v-list-group>
                 <v-list-group :value="buttons[2].text" @click.stop>
                     <template v-slot:activator="{ props }">
+                        <v-row class="mr-0">
+                            <v-col cols="10" sm="11" class="pr-0">
                         <v-list-item
-                        v-bind="props"
                         :title="buttons[2].text"
+                        append-icon=""
                         :class="{ 'text-yellow-darken-2': path === buttons[2].code }"
                         ></v-list-item>
+                        </v-col>
+                        <v-col cols="2" sm="1" class="pr-0">
+                        <v-btn v-bind="props" icon="mdi-chevron-down" elevation="0"></v-btn>
+                        </v-col>
+                        </v-row>
                     </template>
 
                     <v-list-item
@@ -434,15 +446,24 @@ const buttons = [
                 </v-list-group>
                 <v-list-group :value="buttons[3].text" @click.stop>
                     <template v-slot:activator="{ props }">
+                        <v-row class="mr-0">
+                            <v-col cols="10" sm="11" class="pr-0">
                         <v-list-item
-                        v-bind="props"
                         :title="buttons[3].text"
+                        @click="navigator(buttons[3].code)"
+                        append-icon=""
                         :class="{ 'text-yellow-darken-2': path === buttons[3].code }"
                         ></v-list-item>
+                        </v-col>
+                        <v-col cols="2" sm="1" class="pr-0">
+                        <v-btn v-bind="props" icon="mdi-chevron-down" elevation="0"></v-btn>
+                        </v-col>
+                        </v-row>
                     </template>
 
                     <v-list-item
                         v-for="(button, index) in buttons[3].children"
+                        v-model="test"
                         :key="index"
                         @click="closeMenu"
                         :title="button.text"
@@ -450,34 +471,47 @@ const buttons = [
                         :to="'/' + buttons[3].code + '/category/' + button.code"
                     ></v-list-item>
                 </v-list-group>
-                <v-list-item :to="'/' + buttons[4].code">
-                    <v-list-item-title :class="{ 'text-yellow-darken-2': path === buttons[4].code }">{{ buttons[4].text }}</v-list-item-title>
-                </v-list-item>
-                <!-- <v-list-group :value="buttons[4].text" @click.stop>
+                <v-list-group :value="buttons[4].text" @click.stop>
                     <template v-slot:activator="{ props }">
+                        <v-row class="mr-0">
+                            <v-col cols="10" sm="11" class="pr-0">
                         <v-list-item
-                        v-bind="props"
+                        
                         :title="buttons[4].text"
+                        append-icon=""
+                        @click="navigator(buttons[4].code)"
                         :class="{ 'text-yellow-darken-2': path === buttons[4].code }"
                         ></v-list-item>
+                        </v-col>
+                        <v-col cols="2" sm="1" class="pr-0">
+                        <v-btn v-bind="props" icon="mdi-chevron-down" elevation="0"></v-btn>
+                        </v-col>
+                        </v-row>
                     </template>
 
                     <v-list-item
                         v-for="(button, index) in buttons[4].children"
                         :key="index"
-                        @click="closeMenu"
+                        @click="handleTechnology(button.code)"
                         :title="button.text"
                         :value="button.text"
-                        :to="'/' + buttons[4].code + '/' + button.code"
                     ></v-list-item>
-                </v-list-group> -->
+                </v-list-group>
                 <v-list-group :value="buttons[5].text" @click.stop>
                     <template v-slot:activator="{ props }">
+                        <v-row class="mr-0">
+                            <v-col cols="10" sm="11" class="pr-0">
                         <v-list-item
-                        v-bind="props"
+                        
                         :title="buttons[5].text"
+                        append-icon=""
                         :class="{ 'text-yellow-darken-2': path === buttons[5].code }"
                         ></v-list-item>
+                        </v-col>
+                        <v-col cols="2" sm="1" class="pr-0">
+                        <v-btn v-bind="props" icon="mdi-chevron-down" elevation="0"></v-btn>
+                        </v-col>
+                        </v-row>
                     </template>
 
                     <v-list-item
@@ -495,71 +529,48 @@ const buttons = [
 
             </v-list>
         </v-menu>
-        <!-- <v-menu min-width="200px" rounded open-on-hover>
-            <template v-slot:activator="{ props }">
-            <v-btn v-bind="props"  icon="mdi-login">
-            </v-btn>
-            </template>
-            <v-list>
-                <v-list-item to="/login">
-                    <v-list-item-title>登入後臺</v-list-item-title>
-                </v-list-item>
-                <v-list-item to="/register">
-                    <v-list-item-title>註冊帳號</v-list-item-title>
-                </v-list-item>
-            </v-list>
-        </v-menu> -->
-        <!-- 頭像 -->
-        <!-- <v-menu min-width="200px" rounded>
-            <template v-slot:activator="{ props }">
-                <v-btn icon v-bind="props">
-                    <v-avatar color="brown" size="large">
-                        <span class="text-h5">{{ user.initials }}</span>
-                    </v-avatar>
-                </v-btn>
-            </template>
-            <v-card>
-                <v-card-text>
-                    <div class="mx-auto text-center">
-                        <v-avatar color="brown">
-                            <span class="text-h5">{{ user.initials }}</span>
-                        </v-avatar>
-                        <h3>{{ user.fullName }}</h3>
-                        <p class="text-caption mt-1">
-                            {{ user.email }}
-                        </p>
-                        <v-divider class="my-3"></v-divider>
-                        <v-btn rounded variant="text">
-                            Edit Account
-                        </v-btn>
-                        <v-divider class="my-3"></v-divider>
-                        <v-btn rounded variant="text">
-                            Disconnect
-                        </v-btn>
-                    </div>
-                </v-card-text>
-            </v-card>
-        </v-menu> -->
+        
     </v-app-bar>
 </template>
 <script>
+import router from '@/router';
 import { useDisplay } from 'vuetify';
 
 export default {
     data() {
         return {
+            test: null,
             menu: false,
+            projectsMenu: false,
+            technologyMenu: false,
             mobile: null,
-            windowWidth: null,
         }
     },
     created() {
         this.mobile = useDisplay()
-        this.windowWidth = this.mobile.width * 0.9
     },
     methods: {
         closeMenu() {
             this.menu = false
+        },
+        closeProjectsMenu() {
+            this.projectsMenu = false
+        },
+        closeTechnologyMenu() {
+            this.technologyMenu = false
+        },
+        navigator(path) {
+            router.push({'path': '/' + path})
+            this.closeMenu()
+        },
+        handleTechnology(path) {
+            router.push({'path': '/%E5%B7%A5%E7%A8%8B%E5%AF%A6%E7%B8%BE/category/'+path})
+            this.closeMenu()
+        }
+    },
+    computed: {
+        getWindowWidth() {
+            return this.mobile.width * 0.9
         }
     }
 }
