@@ -62,10 +62,11 @@
                   <v-card 
                       elevation='2'
                       class="rounded-xl"
+                      :to="encodeURI(award.link)"
                       >
-                      <v-img :src="award.imageUrl" height="200px"></v-img>
+                      <v-img :src="award.image" height="200px"></v-img>
                     </v-card>
-                  <h3 align="center" class="pa-2">{{ award.name }}</h3>
+                  <h3 align="center" class="pa-2">{{ award.title }}</h3>
               </v-col>
           </v-row>
     </v-container>
@@ -192,24 +193,7 @@ export default {
               // class: "view",
             },
           ],
-          awards: [
-            {
-              name: '金質獎',
-              imageUrl: '/src/assets/carousel1.jpg',
-            },
-            {
-              name: '金質獎',
-              imageUrl: '/src/assets/carousel1.jpg',
-            },
-            {
-              name: '金質獎',
-              imageUrl: '/src/assets/carousel1.jpg',
-            },
-            {
-              name: '金質獎',
-              imageUrl: '/src/assets/carousel1.jpg',
-            },
-          ]
+          awards: [],
       };
   },
   methods: {
@@ -247,6 +231,9 @@ export default {
               });
             })
             .catch(error => console.log(error));
+        http.get('/chosenaward/')
+            .then(response => this.awards = response.data)
+            .catch(error => console.log(error))
   },
 };
 
