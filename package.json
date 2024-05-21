@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--no-warnings' vite",
-    "build": "vite build --emptyOutDir D:/code/nginx-1.26.0/html/dist",
+    "build": "vite build --outDir D:/code/nginx-1.26.0/html/frontend",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore"
   },

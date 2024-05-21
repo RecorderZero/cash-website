@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <v-main class="pa-0">
+    <v-main class="pt-0">
     <!-- use $route.params.id to get data from api -->
-    <v-container v-if="item">
-        <v-container v-if="mobile.mobile">
-        <v-carousel :cycle=true interval="2000" hide-delimiter-background style="height: 300px;">
+    <v-container v-if="item" class="pa-0 fill-height" fluid>
+        <v-container v-if="mobile.mobile" class="fill-height" fluid>
+        <v-carousel :cycle=true interval="2000" hide-delimiter-background style="height: 300px;" fluid class="fill-height">
             <template v-slot:prev="{ props }">
             <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-left" style="background-color: rgba(0, 0, 0, 0);"
               ></v-btn>
@@ -19,11 +19,11 @@
         </v-carousel>
       <!-- <h1> Welcome to News page </h1>
       <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
-        <br>
+        <br><br>
         <v-row>
         <h1>{{ item.title }}</h1>
         </v-row>
-        <br><br>
+        <br><br><br>
         <v-row>
         <p v-html="item.content"></p>
         </v-row>
@@ -40,7 +40,7 @@
         <v-btn @click="$router.go(-1)">回到上一頁</v-btn>
         </v-row>
         </v-container>
-        <v-container v-if="!mobile.mobile">
+        <v-container v-if="!mobile.mobile"  class="fill-height" fluid>
             <v-row>
                 <v-col cols="6">
                     <v-carousel :cycle=true interval="2000" hide-delimiter-background>
