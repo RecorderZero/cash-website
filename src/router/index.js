@@ -7,6 +7,7 @@
 // Composables
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+
 const routes = [
   {
     path: "/",
@@ -194,9 +195,24 @@ const routes = [
   },
 ]
 
+const scrollPositions = {};
+
 const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes,
-})
+});
+
+router.beforeEach((to, from, next) => {
+  scrollPositions[from.fullPath] = { left: window.scrollX, top: window.scrollY };
+  // console.log(`Saved position for ${from.fullPath}:`, scrollPositions[from.fullPath]);
+  next();
+});
+
+window.addEventListener('popstate', () => {
+  const position = scrollPositions[window.location.hash.slice(1)] || { top: 0 };
+  setTimeout(() => {
+    window.scrollTo(position.left, position.top);
+  }, 300); // Adjust timeout duration if needed
+});
 
 export default router

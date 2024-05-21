@@ -5,7 +5,7 @@
 <template>
   <v-main class="pt-0">
       <v-container v-if="!carouselItems">
-          跑馬燈加載中
+          Loading
       </v-container>
       <v-container v-else class="pa-0 fill-height" fluid>
          <v-carousel cycle interval="3000" fluid hide-delimiter-background>
@@ -36,7 +36,7 @@
              </v-carousel-item>
            </v-carousel>
     </v-container>
-    <v-container>
+    <v-container name="news">
     <h2 align="center" class="pb-5">✦最新消息✦</h2>
     <v-row justify="space-around">
       <v-col v-for="(item, index) in news" :key="index" cols="12">
@@ -55,7 +55,7 @@
       </v-col>
     </v-row>
   </v-container>
-    <v-container>
+    <v-container name="awards">
       <h2 align="center">✦精選獲獎✦</h2>
       <v-row>
               <v-col v-for="(award, index) in awards" :key="index" cols="12" sm="6" md="3">
