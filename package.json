@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--no-warnings' vite",
-    "build": "vite build --outDir D:/code/nginx-1.26.0/html/frontend",
+    "build": "vite build && node copy-build.js",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore"
   },
@@ -13,6 +13,7 @@
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
     "core-js": "^3.34.0",
+    "fs-extra": "^11.2.0",
     "roboto-fontface": "*",
     "vue": "^3.3.0",
     "vue-chartjs": "^5.3.1",
