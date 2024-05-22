@@ -4,7 +4,7 @@
     <!-- use $route.params.id to get data from api -->
     <v-container v-if="item" class="pa-0 fill-height" fluid>
         <v-container v-if="mobile.mobile" class="fill-height" fluid>
-        <v-carousel :cycle=true interval="2000" hide-delimiter-background style="height: 300px;" fluid class="fill-height">
+        <v-carousel :cycle=true interval="3000" hide-delimiter-background style="height: 300px;" fluid>
             <template v-slot:prev="{ props }">
             <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-left" style="background-color: rgba(0, 0, 0, 0);"
               ></v-btn>
@@ -43,7 +43,7 @@
         <v-container v-if="!mobile.mobile"  class="fill-height" fluid>
             <v-row>
                 <v-col cols="6">
-                    <v-carousel :cycle=true interval="2000" hide-delimiter-background>
+                    <v-carousel :cycle=true interval="3000" hide-delimiter-background fluid>
                         <template v-slot:prev="{ props }">
                         <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-left" style="background-color: rgba(0, 0, 0, 0);"
                         ></v-btn>

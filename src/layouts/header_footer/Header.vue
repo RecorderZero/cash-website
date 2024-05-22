@@ -204,7 +204,7 @@ const buttons = [
             Welcome!
         </v-app-bar-title> -->
         <v-app-bar-nav-icon>
-            <img src="/src/assets/cash.jpg" width="100%" height="100%">
+            <img src="/cash.ico" style="height: 100%;width: 100%;">
         </v-app-bar-nav-icon>
         <v-app-bar-title>
             開巨技術顧問有限公司
