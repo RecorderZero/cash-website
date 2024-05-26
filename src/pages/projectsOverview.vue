@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import http from '../http-common'
+
 export default {
   data() {
         return {
@@ -27,8 +28,8 @@ export default {
     methods: {
         fetchData() {
             this.categories = this.$route.params.category
-            axios
-            .get('http://127.0.0.1:8000/project/?category=' + this.$route.params.category)
+            http
+            .get('project/?category=' + this.$route.params.category)
             .then(response => {this.projects = response.data})
             .catch(error => {console.log(error.response)})
         }

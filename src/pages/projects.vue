@@ -3,8 +3,8 @@
     <v-main class="pt-0">
     <!-- use $route.params.id to get data from api -->
     <v-container v-if="item" class="pa-0 fill-height" fluid>
-        <v-container v-if="mobile.mobile" class="fill-height" fluid>
-        <v-carousel :cycle=true interval="3000" hide-delimiter-background style="height: 300px;" fluid>
+        <v-container v-if="mobile.mobile" fluid>
+        <v-carousel :cycle=true interval="3000" hide-delimiter-background fluid>
             <template v-slot:prev="{ props }">
             <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-left" style="background-color: rgba(0, 0, 0, 0);"
               ></v-btn>
@@ -16,26 +16,14 @@
           <!-- 輪播內容 -->
           <v-carousel-item v-for="(img, index) in item.image_urls" :src="img" :key="index">
           </v-carousel-item>
-        </v-carousel>
-      <!-- <h1> Welcome to News page </h1>
-      <p>This is the news that opens on <strong>/news/{{ $route.params.id }}</strong> route</p> -->
-        <br><br>
+        </v-carousel><br>
         <v-row>
         <h1>{{ item.title }}</h1>
         </v-row>
-        <br><br><br>
+        <br><br>
         <v-row>
         <p v-html="item.content"></p>
         </v-row>
-        <!-- <br><br>
-        <v-row>
-            <v-divider class="border-opacity-50"></v-divider>
-            <v-icon icon="mdi-map-marker"></v-icon><p>{{ '地點：' + item.location }}</p>
-        </v-row>
-        <v-row>
-            <v-icon icon="mdi-calendar-check"></v-icon><p>{{ '執行期間：' + item.startDate + '~' + item.endDate }}</p>
-        </v-row>
-        <br><br> -->
         <v-row>
         <v-btn @click="$router.go(-1)">回到上一頁</v-btn>
         </v-row>
@@ -52,7 +40,6 @@
                         <v-btn @click="props.onClick" elevation="0" icon="mdi-arrow-right" style="background-color: rgba(0, 0, 0, 0);"
                         ></v-btn>
                     </template>
-                    <!-- 輪播內容 -->
                     <v-carousel-item v-for="(img, index) in item.image_urls" :src="img" :key="index">
                     </v-carousel-item>
                     </v-carousel>
@@ -61,6 +48,8 @@
                     <h1>{{ item.title }}</h1>
                     <br>
                     <p v-html="item.content"></p>
+                    <br>
+                    <v-btn @click="$router.go(-1)">回到上一頁</v-btn>
                 </v-col>
             </v-row>
         </v-container>

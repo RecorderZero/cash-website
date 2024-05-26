@@ -1,15 +1,5 @@
 <template>
-    <v-main class="pa-0">
-      <!-- button filter -->
-      <!-- <v-container>
-          <v-btn text="全部" :to="hrefprefix + '?class=全部'" @click="handleClick"></v-btn>
-          <v-btn v-for="category in categories" :key="category.id" :text="category.chinese_text" :to="hrefprefix + '?class=' + category.chinese_text" @click="handleClick"></v-btn>
-      </v-container> -->
-      <!-- {{ displayItems }} -->
-      <!-- 顯示 -->
-      <!-- 未來page應改成query的方法，以便返回時能到原頁面 -->
-      <!-- 抓資料應改成在後台query而非全部抓到前台 -->
-      <v-container fluid>
+  <v-container fluid>
         <v-row>
           <v-col v-for="item in displayed" :key="item.id" cols="12" sm="6" align="center">
             <v-card link :to="'/' + hrefprefix + '/details/' + item.id" style="max-width: 400px;background-color: #8496A2;">
@@ -35,8 +25,6 @@
         </v-row>
         <v-pagination v-model="page" :length="Math.ceil(totalItems / perPage)"></v-pagination>
       </v-container>
-      <!-- {{ searching }} -->
-    </v-main>
   </template>
 
 <script>

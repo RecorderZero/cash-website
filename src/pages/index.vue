@@ -20,7 +20,7 @@
           <v-carousel-item
             v-for="(item,i) in carouselItems"
             :key="i"
-            :src="item.imageUrl"
+            :src="item.image"
             fluid
           >
                     <v-container
@@ -70,32 +70,6 @@
               </v-col>
           </v-row>
     </v-container>
-      <!-- <v-container>
-          <h2>最新消息</h2>
-          <v-row>
-              <v-col v-for="(info, index) in news" :key="index" cols="12" sm="6" md="4">
-                  <v-hover v-slot="{ isHovering, props }">
-                    <v-card 
-                      :elevation="isHovering ? 12 : 2"
-                      v-bind="props"
-                      link
-                      :to="'news/' + info.id"
-                      >
-                      <v-img :src="info.imageUrl" height="200"></v-img>
-                      <v-card-text><v-icon icon="mdi-timer-edit-outline"></v-icon>{{ info.date }}</v-card-text>
-                      <v-card-title>{{ info.title }}</v-card-title>
-                    </v-card>
-                  </v-hover>
-              </v-col>
-          </v-row>
-          <v-row>
-            <v-col align="center">
-          <v-btn to="/news?class=全部">
-            更多消息
-          </v-btn>
-          </v-col>
-        </v-row>
-      </v-container> -->
       <v-container>
           <h2 align="center">✦工程實績✦</h2><br>
           <v-row>
@@ -202,7 +176,7 @@ export default {
     },
   },
   created() {
-    http.get('/get_valid_carousel/?source=front')
+    http.get('carouselimage/?displayornot=true')
         .then(response => this.carouselItems = response.data)
         .catch(error => {
           if (error.response) {
